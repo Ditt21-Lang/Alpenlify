@@ -55,16 +55,58 @@
   )
 }
 
+#set par(justify: true)
 
 = BAB 1 SPESIFIKASI PROGRAM
 == 1.1 Definisi Program
 
-Tuliskan penjelasan mengenai topik yang dibahas (definisi topik, penjelasan algoritma proses secara umum)
-{tambahkan aturan2 jika ada, penulisan dapat berupa sub subbab baru sebagai bagian dari subbab 1.1 ini }
+Program music player adalah aplikasi perangkat lunak yang berfungsi untuk membaca, mendekode, dan memainkan file audio digital. Program ini mengimplementasikan berbagai komponen pemrosesan sinyal digital dan antarmuka pengguna untuk memungkinkan interaksi yang efisien dalam pemutaran audio.
+
+Alpenlify adalah salah satu aplikasi pemutar musik yang dibuat untuk memenuhi tugas besar mata kuliah Struktur Data dan Algoritma. Alpenlify memiliki fitur sebagai berikut:
+
++ Memutar musik.
++ Membuat Playing Queue.
++ _Seek_ waktu musik.
++ _Skip_ musik di playing queue.
++ _Rewind_ musik yang sedang berjalan.
 
 == 1.2 Identifikasi Proses
 
-{tuliskan ada proses utama apa saja pada program dan tuliskan penjelasannya (masing-masing proses melakukan apa (apa inputnya (diketahui, apa IS nya), proses apa yang dilakukan terhadap input, dan apa outputnya (FS)))}
+Program ini memiliki penggunaan utama sebagai berikut.
+
+1. Membuka program.
+2. Muncul menu dengan pilihan sebagai berikut
+
+#set enum(numbering: "a)")
++ Lihat Musik
+
+Fitur ini akan menampilkan musik dalam bentuk hirarki direktori yang berada di device pengguna yang berada di folder Music. Contoh tampilan outputnya seperti di bawah ini. 
+```sh
+Music/
+  Rock/
+     KingSlayer.mp3
+
+  Dangdut/
+    CintaSatuMalam.mp3
+    KeretaMalam.mp3
+    Bergadang.mp3
+```
+b) Tambahkan music ke queue.
+
+
+Fitur ini akan menambahkan lagu yang dipilih ke dalam queue music.
+```
+  2. Tambahan ke musik ke queue
+  3. Tambah special
+  4. Skip
+  5. Rewind
+  6. Seek
+```
+
+ 
+
+
+
 == 1.3 Identifikasi Data
 
 {Sajikan ilustrasi/gambaran/reperesentasi tree atau struktur linier dari kasus yang dibahas. Dalam representasi tersebut harus tergambar juga struktur data nya (struktur data setiap node dan data dalam bentuk lain yang digunakan).
