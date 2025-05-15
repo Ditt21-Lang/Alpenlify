@@ -93,25 +93,74 @@ Music/
 ```
 b) Tambahkan music ke queue.
 
+Fitur ini akan menambahkan lagu yang dipilih ke dalam queue music. berikut adalah contoh proses pemilihan lagu untuk dimasukan ke Queue menggunakan contoh direktori sebelumnya. 
 
-Fitur ini akan menambahkan lagu yang dipilih ke dalam queue music.
+```sh
+
+Rock/
+Dangdut/
+
+> Dangdut
+
+CintaSatuMalam.mp3
+KeretaMalam.mp3
+Bergadang.mp3
+
+> Bergadang.mp3
+
 ```
-  2. Tambahan ke musik ke queue
-  3. Tambah special
-  4. Skip
-  5. Rewind
-  6. Seek
+
+c) Tambah music advanced.
+
+Menambahkan beberapa musik kedalam Queue secara sekaligus menggunakan sintaks khusus. Sebagai contoh, input dibawah akan menambahkan musik "KingSlayer", "Kereta Malam", dan "Bergadang" secara bersamaan.
+
+```
+Masukan Query
+
+> (Rock(KingSlayer.mp3),Dangdut(KeretaMalam.mp3,Bergadang.mp3))
 ```
 
- 
+d) Skip
 
+Memungkinkan musik yang sedang berjalan dilewati dan memulai lagu berikutnya yang di dalam queue jika ada.
+
+e) Rewind
+
+Mengulang musik yang sedang berjalan ke awal.
+
+f) Seek
+
+Memungkinkan user untuk mencari detik lagu secara spesifik. Contoh dibawah ini akan memindahkan musik ke detik ke-120.
+
+```sh
+Pindah waktu ke detik berapa? 
+
+> 120
+```
 
 
 == 1.3 Identifikasi Data
 
-{Sajikan ilustrasi/gambaran/reperesentasi tree atau struktur linier dari kasus yang dibahas. Dalam representasi tersebut harus tergambar juga struktur data nya (struktur data setiap node dan data dalam bentuk lain yang digunakan).
-Berdasarkan representasi tersebut, tuliskan menggunakan data utama apa saja dan penjelasannya (Kamus Data).Penjelasan berupa kegunaan data (sebagai penampung nilai apa) serta tipe dataya.
-}
+#image("media/Tree.png")
+Saat program dijalankan akan dibuat sebuah tree berdasarkan direktori. Gambar di atas adalah contoh visualisasi dari direktori tersebut.
+
+#pagebreak()
+
+Untuk masing - masing node, diberikan struktur data seperti gambar di bawah ini.
+#image("media/MusicNode.png")
+
+Untuk Queue musik akan digunakan sebuah queue yang infonya berisi pointer menuju node musik yang ada di dalam tree
+#image("media/qyu.png")
+
+Setiap queue, berisi pointer yang menunjuk ke bagian depan dan belakang queue. Untuk queue-nya sendiri akan diimplementasikan menggunakan linked list dengan struktur info yang merupakan pointer ke musik node dan next
+#image("media/QueueNode.png")
+
+Untuk mendapatkan _full path_ dari musik sedangkan queue hanya memiliki pointer ke musik node yang kemungkinan merupakan _leaf_ perlu digunakan stack untuk mendapatkan _full path_ dari musik.
+#image("media/stak.png")
+
+Setiap stack, berisi pointer yang menunjuk ke bagian atas stack. Untuk stack-nya sendiri akan diimplementasikan menggunakan linked list dengan struktur info yang merupakan pointer ke musik node dan next
+#image("media/StakNode.png")
+
 
 
 #pagebreak()
