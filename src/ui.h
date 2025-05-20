@@ -36,7 +36,7 @@ void view_music(MusicNode tree);
     Creator:
 */
 
-void add_music(MusicNode tree, QueueNode queue);
+void add_music(MusicNode tree, QueueMusic queue);
 
 /*
     IS: Musik dijalankan

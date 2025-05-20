@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "deque": "c",
+        "queue": "c",
+        "vector": "c",
+        "xstring": "c",
+        "xutility": "c",
+        "player.h": "c"
+    }
+}

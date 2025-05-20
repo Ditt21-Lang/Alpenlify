@@ -10,25 +10,18 @@ typedef struct MusicNode {
     struct MusicNode* fson;   
 } MusicNode;
 
-typedef struct QueueNode {
+typedef struct Node {
     Info info;
-    struct QueueNode* next;
-} QueueNode;
+    struct Node* next;
+} Node;
 
 typedef struct QueueMusic {
-    QueueNode* front;
-    QueueNode* rear;
-} MusicQueue;
-
-
-typedef struct StackNode{
-    Info info;
-    QueueNode* next;    
-} StackNode;
-
+    Node* front;
+    Node* rear;
+} QueueMusic;
 
 typedef struct Stack{
-    StackNode* Top;
+    Node* Top;
 } Stack ;
     
 

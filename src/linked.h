@@ -11,11 +11,8 @@
 #define First(L) (L).First
 
 typedef MusicNode* infotype;
-typedef struct tElmtList *address;
-typedef struct tElmtList {
-	 infotype info;
-	 address  next;
-	 } ElmtList;
+typedef Node *address;
+
 
 typedef struct {
 	  address First;
