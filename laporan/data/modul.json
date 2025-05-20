@@ -1,0 +1,26 @@
+[
+    {
+        "nama": "Andiputraw",
+        "modul": "init_music_player",
+        "deskripsi": "Menginisalisasi modul player music",
+        "tipe": "Procedure",
+        "parameter": [
+            "delta", "char *"
+        ],
+        "lokal": [
+            ["foo", "integer"]
+        ]
+    },
+    {
+        "nama": "Andiputraw",
+        "modul": "init_music_player",
+        "deskripsi": "Menginisalisasi modul player music",
+        "tipe": "Procedure",
+        "parameter": [
+            "delta", "char *"
+        ],
+        "lokal": [
+            ["foo", "integer"]
+        ]
+    }
+]

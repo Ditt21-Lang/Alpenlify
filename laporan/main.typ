@@ -179,7 +179,16 @@ passing by..
 Jelaskan : sebagai penampung nilai apa, IS & FS berupa nilai apa
 
 ],[],
+  // ..json("./data/modul.json").enumerate().map(data => {
+  //   let (i, v) = data
+  //   return (i, v.nama, "", v.tipe, "", "")
+  // }).flatten()
 )
+
+// #((10, 10), (20, 20), (30, 30)).enumerate().map(data => {
+//   let (i, v) = data
+  
+// })
 
 3. Setelah itu, uraikan logika proses setiap modul yang terdapat pada Structured Chart.
 { berisi algoritma (menggunakan notasi pseudocode atau flowchart) untuk setiap modul yang dibuat (berisi logika dasar, jadi tidak termasuk layout output di layar). Yang diuraikan disini hanya modul-modul yang merupakan tambahan atau  modifikasi dari program sebelumnya. KECUALI jika program dibuat dari nol, maka semua modul yang dibuat oleh kelompok ybs harus dituliskan algoritmanya.
