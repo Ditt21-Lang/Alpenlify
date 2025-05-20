@@ -1,6 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+typedef MusicNode* Info;
+
 typedef struct MusicNode {
     char* name;
     struct MusicNode* parent;
@@ -9,21 +11,20 @@ typedef struct MusicNode {
 } MusicNode;
 
 typedef struct QueueNode {
-    MusicNode* ingfo;
+    Info info;
     struct QueueNode* next;
 } QueueNode;
 
-typedef struct MusicQueue {
+typedef struct QueueMusic {
     QueueNode* front;
     QueueNode* rear;
 } MusicQueue;
 
 
 typedef struct StackNode{
-    MusicNode* info;
+    Info info;
     QueueNode* next;    
 } StackNode;
-
 
 
 typedef struct Stack{
