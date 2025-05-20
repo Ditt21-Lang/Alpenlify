@@ -110,25 +110,15 @@ Bergadang.mp3
 
 ```
 
-c) Tambah music advanced.
-
-Menambahkan beberapa musik kedalam Queue secara sekaligus menggunakan sintaks khusus. Sebagai contoh, input dibawah akan menambahkan musik "KingSlayer", "Kereta Malam", dan "Bergadang" secara bersamaan.
-
-```
-Masukan Query
-
-> (Rock(KingSlayer.mp3),Dangdut(KeretaMalam.mp3,Bergadang.mp3))
-```
-
-d) Skip
+c) Skip
 
 Memungkinkan musik yang sedang berjalan dilewati dan memulai lagu berikutnya yang di dalam queue jika ada.
 
-e) Rewind
+d) Rewind
 
 Mengulang musik yang sedang berjalan ke awal.
 
-f) Seek
+e) Seek
 
 Memungkinkan user untuk mencari detik lagu secara spesifik. Contoh dibawah ini akan memindahkan musik ke detik ke-120.
 
