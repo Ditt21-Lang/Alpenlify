@@ -30,15 +30,15 @@ typedef struct Stack{
     IS: Music player belum diinisialisasi
     FS: Music player sudah diinisialisasi
 
-    Creator:
+    Creator: Andi Putra
 */
 void init_music_player(QueueMusic* music_queue);
 
 /*
     IS: Music player sudah terinisialisasi dan ada isinya 
-    FS: Music player hilang, gone, ter-deinisialisasi, wowowo
+    FS: Music player hilang, gone, ter-deinisialisasi
 
-    Creator:
+    Creator: Andi Putra
 */
 void destroy_music_player();
 
@@ -46,7 +46,7 @@ void destroy_music_player();
     IS: Thread terbuat
     FS: -
 
-    Creator: 
+    Creator: Andi Putra
 */
 DWORD WINAPI music_thread(LPVOID lpParam);
 
