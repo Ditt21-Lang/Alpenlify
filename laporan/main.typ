@@ -1,57 +1,54 @@
 #set text(font: "Tinos")
-#show raw.where(lang: none) : raw => {
+#show raw.where(lang: none): raw => {
   text(font: "JetBrains Mono", raw.text)
-} 
+}
 
 
 #include "cover.typ"
 #pagebreak()
 
 #align(center)[
-  #text( size: 14pt, weight: "bold", "TABEL REVISI")
+  #text(size: 14pt, weight: "bold", "TABEL REVISI")
 
   #let heading(body) = {
-    
     return table.cell(
-        fill: gray.lighten(20%),
-        text(weight: "bold", body)
-      )
+      fill: gray.lighten(20%),
+      text(weight: "bold", body),
+    )
   }
 
-  #table( 
+  #table(
     columns: (20pt, 120pt, 300pt, 60pt),
     heading("No"), heading("Tanggal"), heading("Keterangan"), heading("PIC"),
-    [1],[],[],[],
-    [2],[],[],[],
-    [3],[],[],[],
-    [4],[],[],[],
+    [1], [], [], [],
+    [2], [], [], [],
+    [3], [], [], [],
+    [4], [], [], [],
   )
 ]
 
 #pagebreak()
 #align(center)[
-  #outline(title: text("Daftar Isi"), indent:auto)
+  #outline(title: text("Daftar Isi"), indent: auto)
 ]
 #pagebreak()
 
 // Content
 
-#show heading.where(
-  level: 1
-): it => {
-  return align(center, 
-  text(
-    size: 18pt,
-  it.body
-  ) 
-)}
-
-#show heading.where(
-  level: 2
-): it => {
+#show heading.where(level: 1): it => {
   return align(
-    left, 
-    text(size: 14pt, it.body) 
+    center,
+    text(
+      size: 18pt,
+      it.body,
+    ),
+  )
+}
+
+#show heading.where(level: 2): it => {
+  return align(
+    left,
+    text(size: 14pt, it.body),
   )
 }
 
@@ -80,7 +77,7 @@ Program ini memiliki penggunaan utama sebagai berikut.
 #set enum(numbering: "a)")
 + Lihat Musik
 
-Fitur ini akan menampilkan musik dalam bentuk hirarki direktori yang berada di device pengguna yang berada di folder Music. Contoh tampilan outputnya seperti di bawah ini. 
+Fitur ini akan menampilkan musik dalam bentuk hirarki direktori yang berada di device pengguna yang berada di folder Music. Contoh tampilan outputnya seperti di bawah ini.
 ```sh
 Music/
   Rock/
@@ -93,7 +90,7 @@ Music/
 ```
 b) Tambahkan music ke queue.
 
-Fitur ini akan menambahkan lagu yang dipilih ke dalam queue music. berikut adalah contoh proses pemilihan lagu untuk dimasukan ke Queue menggunakan contoh direktori sebelumnya. 
+Fitur ini akan menambahkan lagu yang dipilih ke dalam queue music. berikut adalah contoh proses pemilihan lagu untuk dimasukan ke Queue menggunakan contoh direktori sebelumnya.
 
 ```sh
 
@@ -123,7 +120,7 @@ e) Seek
 Memungkinkan user untuk mencari detik lagu secara spesifik. Contoh dibawah ini akan memindahkan musik ke detik ke-120.
 
 ```sh
-Pindah waktu ke detik berapa? 
+Pindah waktu ke detik berapa?
 
 > 120
 ```
@@ -166,32 +163,37 @@ Hal-hal yang dituliskan pada subbab ini adalah sebagai berikut :
 
 // TODO: generate table dari suatu tempat, jangan langsung taroh disini
 #table(
-  columns: (30pt, 60pt, 60pt, 60pt, 150pt, 150pt),
+  columns: (30pt, 90pt, 70pt, 60pt, 150pt, 60pt),
   [*No*], [*Nama Modul*], [*Deskripsi*], [*Jenis*], [*Parameter*], [*Kamus Data (lokal)*],
-  [1],[
+  [1], [
     .............
     *Pembuat*
     : ...........
-  ],[............],[Function atau Procedure],[
-Sebutkan, jelaskan, termasuk penjelasan IS dan FS nya !
-Sebutkan : nama, tipe data,
-passing by..
-Jelaskan : sebagai penampung nilai apa, IS & FS berupa nilai apa
+  ], [............], [Function atau Procedure], [
+    Sebutkan, jelaskan, termasuk penjelasan IS dan FS nya !
+    Sebutkan : nama, tipe data,
+    passing by..
+    Jelaskan : sebagai penampung nilai apa, IS & FS berupa nilai apa
 
-],[],
-  // ..json("./data/modul.json").enumerate().map(data => {
-  //   let (i, v) = data
-  //   return (i, v.nama, "", v.tipe, "", "")
-  // }).flatten()
+  ], [] ,
+  // Ilmu hitam typst.
+  ..json("data/modul.json")
+    .enumerate()
+    .map(data => {
+      let (i, v) = data
+      return (str(i), [
+        #v.modul
+        \
+        *Pembuat*:\ 
+        #v.nama
+        ], v.deskripsi, v.tipe, "Tabel ini kekecilan cok, gak akan muat" , "")
+    }).flatten()
 )
 
-// #((10, 10), (20, 20), (30, 30)).enumerate().map(data => {
-//   let (i, v) = data
-  
-// })
+
 
 3. Setelah itu, uraikan logika proses setiap modul yang terdapat pada Structured Chart.
-{ berisi algoritma (menggunakan notasi pseudocode atau flowchart) untuk setiap modul yang dibuat (berisi logika dasar, jadi tidak termasuk layout output di layar). Yang diuraikan disini hanya modul-modul yang merupakan tambahan atau  modifikasi dari program sebelumnya. KECUALI jika program dibuat dari nol, maka semua modul yang dibuat oleh kelompok ybs harus dituliskan algoritmanya.
+{ berisi algoritma (menggunakan notasi pseudocode atau flowchart) untuk setiap modul yang dibuat (berisi logika dasar, jadi tidak termasuk layout output di layar). Yang diuraikan disini hanya modul-modul yang merupakan tambahan atau modifikasi dari program sebelumnya. KECUALI jika program dibuat dari nol, maka semua modul yang dibuat oleh kelompok ybs harus dituliskan algoritmanya.
 Lengkapi algoritma dengan kamus data, untuk setiap variabel yang digunakan pada logika proses.
 Jika algoritma merupakan modifikasi/copy dari algoritma/program yang dibuat oleh orang lain diluar anggota kelompok, tuliskan referensinya! }
 
@@ -229,11 +231,12 @@ Berisi daftar keterangan kontribusi setiap anggota kelompok pada pengerjaan pemb
 // TODO: Sama, generate dari suatu data source. Jangan langsung taruh
 #table(
   columns: (100pt, 400pt),
-  [No],[:],
-  [Nama],[:],
-  [Kontribusi],[:
-    1. 
-    2. 
+  [No], [:],
+  [Nama], [:],
+  [Kontribusi],
+  [:
+    1.
+    2.
     3.
-  ]
+  ],
 )
