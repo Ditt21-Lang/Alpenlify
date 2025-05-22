@@ -5,6 +5,7 @@
 #define spnrsll_H
 #include <stdio.h>
 #include "player.h"
+#include <stdbool.h>
 #define Nil NULL
 #define Info(P) (P)->info
 #define Next(P) (P)->next

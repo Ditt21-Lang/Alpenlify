@@ -12,6 +12,14 @@ void EnQueueMusic(QueueMusic *Q, infotype X);
 
 void deQueueMusic(QueueMusic *Q, infotype *X);
 
-void PrintQueueMusic(QueueMusic q);
+void PrintQueueMusic(QueueMusic Q);
+
+/*
+    IS: Queue ada
+    FS: Queue hancur boyyyy
+
+    Creator: 
+*/
+void destroy_queue(QueueMusic *Q);
 
 #endif

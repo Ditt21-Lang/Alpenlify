@@ -16,6 +16,13 @@ void Push (Stack *S, infotype X);
 
 void Pop (Stack *S, infotype *X);
 
+/*
+    IS: Stack ada
+    FS: Stack hancur boyyyy
+
+    Creator: 
+*/
+void destroy_stack(Stack *S);
 
 
 

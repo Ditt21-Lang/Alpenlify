@@ -1,5 +1,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
+#include <Windows.h>
 
 typedef MusicNode* Info;
 
@@ -26,19 +27,27 @@ typedef struct Stack{
     
 
 /*
-    IS: Thread music belum terinisialisasi
-    FS: Thread music terinisialisasi
+    IS: Music player belum diinisialisasi
+    FS: Music player sudah diinisialisasi
 
-    Creator: Andi Putra
+    Creator:
 */
-void init_music_player();
+void init_music_player(QueueMusic* music_queue);
 
 /*
-    IS: Thread music telah terinisialisasi. Queue music mungkin kosong.
-    FS: Music masuk ke queue
+    IS: Music player sudah terinisialisasi dan ada isinya 
+    FS: Music player hilang, gone, ter-deinisialisasi, wowowo
 
-    Creator: Andi Putra
+    Creator:
 */
-void enqueue_music(MusicNode *node);
+void destroy_music_player();
+
+/*
+    IS: Thread terbuat
+    FS: -
+
+    Creator: 
+*/
+DWORD WINAPI music_thread(LPVOID lpParam);
 
 #endif // PLAYER_H
