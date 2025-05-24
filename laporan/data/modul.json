@@ -15,20 +15,6 @@
     },
     {
         "nama": "Andiputraw",
-        "modul": "init_music_player",
-        "deskripsi": "Menginisalisasi modul player music",
-        "tipe": "Procedure",
-        "parameter": [
-            "delta", "char *"
-        ],
-        "lokal": [
-            ["foo", "integer"]
-        ],
-        "is": "Music player belum diinisialisasi", 
-        "fs": "Music player sudah diinisialisasi"
-    },
-    {
-        "nama": "Andiputraw",
         "modul": "destroy_music_ player",
         "deskripsi": "Meng-deinisialisasi music player",
         "tipe": "Procedure",

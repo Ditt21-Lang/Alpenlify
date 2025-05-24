@@ -154,42 +154,37 @@ Setiap stack, berisi pointer yang menunjuk ke bagian atas stack. Untuk stack-nya
 
 = BAB 2 PERANCANGAN PROGRAM
 
+== 2.1 Chart
 
-== Perancangan Proses
-Hal-hal yang dituliskan pada subbab ini adalah sebagai berikut :
+TODO: chart akan ada disini
 
-1. Gambarkan hirarki programnya menggunakan tools STRUCTURED CHART (penjelasan dasar dan contoh ada pada diktat DDP Bab V : Structured Programming subbab Hubungan Antar Modul, juga dapat dibaca dari file lampiran dokumen ini (StructuredChart.pdf) ).
-2. Setelah itu, buat tabel penjelasan global dari setiap modul yang terdapat pada Structured Chart sebagai berikut :
+== 2.2 Tabel Prosedur
 
 // TODO: generate table dari suatu tempat, jangan langsung taroh disini
 #table(
   columns: (30pt, 90pt, 70pt, 60pt, 150pt, 60pt),
   [*No*], [*Nama Modul*], [*Deskripsi*], [*Jenis*], [*Parameter*], [*Kamus Data (lokal)*],
-  [1], [
-    .............
-    *Pembuat*
-    : ...........
-  ], [............], [Function atau Procedure], [
-    Sebutkan, jelaskan, termasuk penjelasan IS dan FS nya !
-    Sebutkan : nama, tipe data,
-    passing by..
-    Jelaskan : sebagai penampung nilai apa, IS & FS berupa nilai apa
-
-  ], [] ,
   // Ilmu hitam typst.
   ..json("data/modul.json")
     .enumerate()
     .map(data => {
       let (i, v) = data
-      return (str(i), [
+      return (str(i + 1), [
         #v.modul
         \
         *Pembuat*:\ 
         #v.nama
         ], v.deskripsi, v.tipe, [
-          #v.parameter.at(0)
-          :
-          #v.parameter.at(1)\
+          
+          #let n = 0
+          #while (n < v.parameter.len()) {
+            [
+              #v.parameter.at(n) 
+              :
+              #v.parameter.at(n + 1) \ ]
+            n = n + 2
+          } 
+          
           IS:
           #v.is\
           FS:
@@ -199,6 +194,7 @@ Hal-hal yang dituliskan pada subbab ini adalah sebagai berikut :
 )
 
 
+== 2.3 ALgoritma
 
 3. Setelah itu, uraikan logika proses setiap modul yang terdapat pada Structured Chart.
 { berisi algoritma (menggunakan notasi pseudocode atau flowchart) untuk setiap modul yang dibuat (berisi logika dasar, jadi tidak termasuk layout output di layar). Yang diuraikan disini hanya modul-modul yang merupakan tambahan atau modifikasi dari program sebelumnya. KECUALI jika program dibuat dari nol, maka semua modul yang dibuat oleh kelompok ybs harus dituliskan algoritmanya.
@@ -218,10 +214,23 @@ Algoritma ditulis menggunakan font Courier New ukuran 10, spasi 1). Contoh :
     End Modul UTAMA.
 ```
 
-== Perancangan Tampilan (Output)
-Sub bab ini menggambarkan rancangan/desain output/tampilan pada layar.
-BUKAN hasil print screen/capture tampilan program !
-Setiap perancangan tampilan harus diberi identitas dan keterangan secukupnya.
+== 2.4 Perancangan Tampilan (Output)
+
+#image("media/tampilan-menu.png")
+
+Tampilan diatas adalah tampilan yang akan muncul saat awal masuk program
+
+#image("media/tampilan-lihat-musk.png")
+
+Tampilan diatas adalah tampilan yang akan muncul pada memasuki menu "Lihat Musik"
+
+#image("media/tampilan-masukan-musik.png")
+
+Tampilan diatas adalah tampilan yang akan muncul pada memasuki menu "Tambahkan musik ke queue". Tampilan ini akan muncul sampai pengguna menginputkan sebuah file
+
+#image("media/tampilan-seek.png")
+
+Tampilan diatas adalah tampilan yang akan muncul saat pengguna memasuki menu "Seek"
 
 
 #pagebreak()
