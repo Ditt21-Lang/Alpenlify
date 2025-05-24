@@ -67,6 +67,26 @@ Alpenlify adalah salah satu aplikasi pemutar musik yang dibuat untuk memenuhi tu
 + _Skip_ musik di playing queue.
 + _Rewind_ musik yang sedang berjalan.
 
+Untuk memastikan pengguna dapat menjalankan program dengan benar dan memanfaatkan seluruh fitur yang tersedia, berikut ini adalah aturan-aturan penggunaan yang harus diperhatikan selama program dijalankan.
+
++ Pengguna dapat melihat seluruh daftar musik yang tersedia di dalam folder musik lokal. Seluruh file musik yang terdapat dalam folder tersebut akan ditampilkan secara otomatis saat program dijalankan.
+
++ Pengguna dapat memilih musik dari daftar dan memasukkannya ke dalam antrian pemutaran. Musik yang berada di urutan pertama antrian akan langsung dimainkan secara otomatis.
+
++ Apabila terdapat musik dalam antrian, pengguna dapat memilih untuk mengulang lagu yang sedang diputar tanpa menghapusnya dari antrian.
+
++ Pengguna dapat melewati lagu yang sedang diputar dan langsung melanjutkan ke lagu berikutnya dalam antrian, jika ada.
+
++ Pengguna dapat memindahkan posisi waktu pemutaran lagu dengan memasukkan nilai waktu dalam satuan detik, sehingga pemutaran akan dilanjutkan dari waktu yang ditentukan.
+
+Selain aturan penggunaan, terdapat beberapa batasan yang perlu diketahui oleh pengguna. Batasan-batasan ini menggambarkan keterbatasan fitur dalam program dan ruang lingkup fungsionalitas yang disediakan.
+
++ Program hanya dapat mengakses file musik yang berada di dalam folder lokal pengguna. Musik dari sumber eksternal atau online tidak dapat digunakan.
+
++ Pengguna hanya dapat menambahkan satu lagu ke dalam antrian pada satu waktu. Tidak tersedia fitur untuk menambahkan banyak lagu secara bersamaan.
+
++ Program hanya menampilkan seluruh daftar lagu yang ada dalam folder secara keseluruhan. Pengguna tidak dapat mencari lagu secara spesifik menggunakan kata kunci atau filter tertentu.
+
 == 1.2 Identifikasi Proses
 
 Program ini memiliki penggunaan utama sebagai berikut.
@@ -187,9 +207,9 @@ Hal-hal yang dituliskan pada subbab ini adalah sebagai berikut :
         *Pembuat*:\ 
         #v.nama
         ], v.deskripsi, v.tipe, [
-          #v.parameter.at(0)
-          :
-          #v.parameter.at(1)\
+          // #v.parameter.at(0)
+          // :
+          // #v.parameter.at(1)\
           IS:
           #v.is\
           FS:
