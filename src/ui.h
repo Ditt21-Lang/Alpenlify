@@ -18,7 +18,7 @@ void menu();
     Creator: Raf
 */
 
-void input_user(char* buffer);
+void input_user(char **buffer);
 
 /*
     IS: Tree tidak kosong  

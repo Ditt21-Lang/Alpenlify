@@ -175,8 +175,13 @@ Setiap stack, berisi pointer yang menunjuk ke bagian atas stack. Untuk stack-nya
 = BAB 2 PERANCANGAN PROGRAM
 
 == 2.1 Chart
+=== 2.1.1 Strucuted chart 1
+#image("media/structured-chart-1.png")
+=== 2.1.2 Strucuted chart 2
+#image("media/structured-chart-2.png")
+=== 2.1.3 Strucuted chart 3
+#image("media/structured-chart-3.png")
 
-TODO: chart akan ada disini
 
 == 2.2 Tabel Prosedur
 
