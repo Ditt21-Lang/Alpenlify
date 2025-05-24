@@ -186,7 +186,15 @@ Hal-hal yang dituliskan pada subbab ini adalah sebagai berikut :
         \
         *Pembuat*:\ 
         #v.nama
-        ], v.deskripsi, v.tipe, "Tabel ini kekecilan cok, gak akan muat" , "")
+        ], v.deskripsi, v.tipe, [
+          #v.parameter.at(0)
+          :
+          #v.parameter.at(1)\
+          IS:
+          #v.is\
+          FS:
+          #v.fs
+        ] , "")
     }).flatten()
 )
 
