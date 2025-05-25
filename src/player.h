@@ -9,10 +9,10 @@ typedef struct MusicNode {
     struct MusicNode* nbrother;
     struct MusicNode* fson;   
 } MusicNode;
-typedef MusicNode* Info;
+typedef MusicNode* MusicTree;
 
 typedef struct Node {
-    Info info;
+    MusicTree info;
     struct Node* next;
 } Node;
 

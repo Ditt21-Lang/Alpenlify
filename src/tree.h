@@ -20,7 +20,7 @@ void destory_tree(MusicNode* root);
 
 /*
     IS: Tree sudah terbuat
-    FS: children sari sebuah parent ditampilkan
+    FS: children dari sebuah parent ditampilkan
 
     Creator: Gilang Aditya
 */
@@ -42,7 +42,7 @@ void print_tree(MusicNode root, int height);
 
     Creator: Gilang Aditya
 */
-MusicNode search_node(MusicNode root, char* target);
+MusicTree search_node(MusicTree root, char* target);
 
 
 /*

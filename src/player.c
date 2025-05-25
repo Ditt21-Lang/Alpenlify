@@ -2,7 +2,7 @@
 #include <windows.h>
 #include "miniaudio.h"
 #include <stdio.h>
-#include <util.h>
+#include "util.h"
 #include "queue.h"
 #include <assert.h>
 
