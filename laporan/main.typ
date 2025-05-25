@@ -265,7 +265,11 @@ Berisi kesimpulan pencapaian tugas (apa yang sudah selesai dan apa saja yang bel
 
 #pagebreak()
 = DAFTAR PUSTAKA
-Berisi daftar referensi yang dijadikan acuan dalam pembuatan program ini.
+Berisi daftar referensi yang dijadikan acuan dalam pembuatan program ini. \
+https://stackoverflow.com/questions/1981459/using-threads-in-c-on-windows-simple-example \ 
+https://learn.microsoft.com/en-us/windows/win32/procthread/creating-threads?redirectedfrom=MSDN \
+https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-createthread \
+https://github.com/mackron/miniaudio/tree/master \
 #pagebreak()
 = DAFTAR KONTRIBUSI ANGGOTA KELOMPOK
 Berisi daftar keterangan kontribusi setiap anggota kelompok pada pengerjaan pembuatan program ini.

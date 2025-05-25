@@ -5,6 +5,8 @@
 #include <shlobj.h>      // For SHGetKnownFolderPath
 #include <shobjidl.h>    // For KNOWNFOLDERID definitions
 
+#define UNUSED(x) (void)x;
+
 /*
     IS: -
     FS: Path ke folder dikembalikan

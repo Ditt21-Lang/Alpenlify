@@ -1,8 +1,13 @@
+#define WIN32_LEAN_AND_MEAN
 #include <stdio.h>
 #include "util.h"
+#include "player.h"
 
 int main() {
-    char *f = get_music_folder_path();
-    printf("%s\n", f);
+
+    init_music_player(NULL);
+
+    destroy_music_player();
+
     return 0;
 }
