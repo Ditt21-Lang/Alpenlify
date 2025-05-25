@@ -24,7 +24,16 @@ typedef struct QueueMusic {
 typedef struct Stack{
     Node* Top;
 } Stack ;
-    
+
+typedef enum MusicCommand {
+    NONE,
+    REWIND,
+    SKIP,
+    SEEK,
+} MusicCommand;
+
+extern MusicCommand music_command;
+extern int music_command_args[2];
 
 /*
     IS: Music player belum diinisialisasi

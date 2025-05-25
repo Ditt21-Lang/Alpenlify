@@ -8,6 +8,7 @@
         "player.h": "c",
         "miniaudio.h": "c",
         "linked.h": "c",
-        "stack.h": "c"
+        "stack.h": "c",
+        "queue.h": "c"
     }
 }
