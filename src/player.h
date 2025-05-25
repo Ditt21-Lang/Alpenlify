@@ -2,7 +2,6 @@
 #define PLAYER_H
 #include <Windows.h>
 
-typedef MusicNode* Info;
 
 typedef struct MusicNode {
     char* name;
@@ -10,6 +9,7 @@ typedef struct MusicNode {
     struct MusicNode* nbrother;
     struct MusicNode* fson;   
 } MusicNode;
+typedef MusicNode* Info;
 
 typedef struct Node {
     Info info;

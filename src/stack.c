@@ -1,28 +1,28 @@
 #include "stack.h"
 
-void SetTop (Stack *S, Stack NewTop )
+void SetTop (Stack *S, Node *NewTop )
 
 {
-	*S = NewTop;
+	S->Top = NewTop;
 }
 
 void CreateEmpty (Stack *S)
 {
-	*S = NULL;
+	S->Top = NULL;
 }
 
 bool IsEmpty (Stack S)
 {
-	return (S == NULL);
+	return (S.Top == NULL);
 }
 
 void Push (Stack *S, infotype X)
 {
 	List l;
-	l.First = *S;
+	l.First = S->Top;
 
 	InsVFirst(&l, X);
-	*S = l.First;
+	S->Top = l.First;
 }
 
 
@@ -30,10 +30,10 @@ void Pop (Stack *S, infotype *X)
 {
 	List l;
 	address popped;
-	l.First = *S;
+	l.First = S->Top;
 	DelFirst(&l, &popped);
 	*X = popped->info;
-	*S = l.First;
+	S->Top = l.First;
 	
 }
 

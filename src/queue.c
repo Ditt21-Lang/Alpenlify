@@ -18,8 +18,6 @@ void EnQueueMusic(QueueMusic *Q, infotype X)
     address add;
     List l;
     l.First = Q->rear;
-    if (is_Full(*Q))
-        return;
 
     add = Alokasi(X);
     InsertLast(&l, add);
@@ -59,7 +57,8 @@ void PrintQueueMusic(QueueMusic q)
     printf("Antrian sekarang: ");
     while (cursor != q.rear->next)
     {
-        printf("%d ", cursor->info);
+        printf("Printing queue is not supported yet");
+        // printf("%d ", cursor->info);
         cursor = cursor->next;
     }
 

@@ -5,6 +5,9 @@
         "vector": "c",
         "xstring": "c",
         "xutility": "c",
-        "player.h": "c"
+        "player.h": "c",
+        "miniaudio.h": "c",
+        "linked.h": "c",
+        "stack.h": "c"
     }
 }

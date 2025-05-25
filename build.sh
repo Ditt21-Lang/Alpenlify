@@ -1,0 +1,1 @@
+clang -Wall -Wextra -Werror -std=c99 -o main ./src/*.c -I ./src/ -I ./external/

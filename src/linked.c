@@ -3,6 +3,7 @@
 #include <string.h>
 #include "linked.h"
 #include <stdbool.h>
+#include <assert.h>
 #define UNUSED(x) (void)x;
 
 bool ListEmpty(List L)
@@ -22,7 +23,7 @@ address Alokasi(infotype X)
 {
     address P;
 
-    P = (address)malloc(sizeof(ElmtList));
+    P = (address)malloc(sizeof(Node));
     if (P != Nil)
     {
         Info(P) = X;
@@ -43,18 +44,19 @@ void DeAlokasi(address P)
 address Search(List L, infotype X)
 
 {
-
+    UNUSED(X)
     address P;
     bool found = false;
 
     P = First(L);
     while ((P != Nil) && (!found))
     {
-        if (strcmp(Info(P), X) == 0)
-        {
-            found = true;
-        }
-        else
+        assert(false && "Search is not implemented yet");
+        // if (strcmp(Info(P), X) == 0)
+        // {
+        //     found = true;
+        // }
+        // else
         {
             P = Next(P);
         }
@@ -89,7 +91,7 @@ bool FSearch(List L, address P)
 address SearchPrec(List L, infotype X)
 
 {
-
+    UNUSED(X);
     address Prec, P;
     bool found = false;
 
@@ -97,12 +99,13 @@ address SearchPrec(List L, infotype X)
     P = First(L);
     while ((P != Nil) && (!found))
     {
-        if (strcmp(Info(P), X) == 0)
-        {
+        assert(false && "Search prec is not supported yet");
+        // if (strcmp(Info(P), X) == 0)
+        // {
 
-            found = true;
-        }
-        else
+        //     found = true;
+        // }
+        // else
         {
             Prec = P;
             P = Next(P);
@@ -227,14 +230,15 @@ void DelP(List *L, infotype X)
 
     if (Prec == Nil)
     {
-        if (strcmp(Info(First(*L)), X) == 0)
-        {
-            DelVFirst(L, &X);
-        }
-        else
-        {
-            printf("Elemen pertama not found");
-        }
+        assert(false && "Del Prec is not supported yet");
+        // if (strcmp(Info(First(*L)), X) == 0)
+        // {
+        //     DelVFirst(L, &X);
+        // }
+        // else
+        // {
+        //     printf("Elemen pertama not found");
+        // }
     }
     else
     {
@@ -291,7 +295,7 @@ void PrintInfo(List L)
         P = First(L);
         while (P != Nil)
         {
-            printf("%s ", Info(P));
+            printf("Printing is not supported yet... ");
             P = Next(P);
         }
         printf("\n");

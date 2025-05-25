@@ -4,9 +4,7 @@
 #include <stdbool.h>
 #include "player.h"
 
-typedef address Stack;
-
-void SetTop (Stack *S, Stack NewTop );
+void SetTop (Stack *S, Node *NewTop );
 
 void CreateEmpty (Stack *S);
 
