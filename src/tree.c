@@ -17,3 +17,13 @@ MusicTree search_node(MusicTree root, char* target){
     
     return search_node(root->nbrother, target);
 }
+
+void destory_tree(MusicNode* root){
+    if (root == NULL){
+        return;
+    } else {
+        destroy_tree(root->fson);
+        destory_tree(root->nbrother);
+        free(root);
+    }
+}
