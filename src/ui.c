@@ -87,7 +87,7 @@ void replay(){
 */
 
 void seek(int detik){
-    printf("Ini seek");
+    printf("Ini seeks");
     printf("%d", detik);
     getch();
 }
