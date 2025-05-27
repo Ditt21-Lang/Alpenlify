@@ -5,6 +5,7 @@
 #include "util.h"
 #include "queue.h"
 #include <assert.h>
+#include "stack.h"
 
 ma_engine _music_engine;
 HANDLE _thread_handle;
@@ -27,29 +28,67 @@ void init_music_player(QueueMusic *music_queue)
 DWORD WINAPI music_thread(LPVOID lpParam)
 {
     UNUSED(lpParam);
-    // QueueMusic* queue = lpParam;
+    QueueMusic* queue = lpParam;
     ma_sound sound = {0};
     ma_uint64 length;
     ma_result result;
+    Stack stack;
+    MusicTree cursor;
+    char *music_path;
+    size_t music_path_len;
+    char *path_buffer;
+    size_t path_buffer_len = 0;
+    size_t path_len = 0;
+    CreateEmpty(&stack);
 
-    result = ma_sound_init_from_file(&_music_engine, "C:\\Users\\adity\\Music\\SayangCulik.mp3", 0, NULL, NULL, &sound);
-
-    if (result != MA_SUCCESS)
-    {
-        return -1;
-    }
-
+    music_path = get_music_folder_path();
+    music_path_len = strlen(music_path);
+    (void)result;   
+   
     // Infinity loop
     while (1)
     {
-        // if(!is_Empty(*queue) && ma_sound_at_end(&sound)) {
-        if (!ma_sound_is_playing(&sound))
-        {
-            {
-                // Load Music. Blocking sampai tree nya udah jadi
-                ma_sound_start(&sound);
-                ma_sound_get_length_in_pcm_frames(&sound, &length);
+        // if(ma_sound_at_end(&sound)) {
+        //     printf("Music nya habis cuy\n");
+        // }
+        // if(!is_Empty(*queue) ) {
+        //     printf("Queuenya ada isinya cuy\n");
+        // }
+        if(!is_Empty(*queue) && (!ma_sound_is_playing(&sound))) {
+            deQueueMusic(queue, &cursor);
+            printf("\nMendequeue musik %s", cursor->name);
+            // ambil path
+            path_buffer_len = 0;
+            path_len = 0;
+            while(cursor->parent != NULL) {
+                Push(&stack, cursor);
+                path_buffer_len += strlen(cursor->name) + 1;
+                cursor = cursor->parent;
             }
+            path_buffer_len += music_path_len;
+            path_buffer = malloc(sizeof(char) * path_buffer_len);
+            strcpy(path_buffer, music_path);
+            path_len += music_path_len;
+            *(path_buffer + path_len) = '/';
+            path_len += 1;
+            while(!IsEmpty(stack)) {
+                Pop(&stack, &cursor);
+                strcpy(path_buffer + path_len, cursor->name);
+                path_len += strlen(cursor->name);
+                *(path_buffer + path_len ) = '/';
+                path_len += 1;
+            }
+            *(path_buffer + path_len - 1) = '\0';
+            // Load Music.
+            result = ma_sound_init_from_file(&_music_engine, path_buffer, 0, NULL, NULL, &sound);
+            if (result != MA_SUCCESS)
+            {
+                return -1;
+            }
+
+            ma_sound_start(&sound);
+            ma_sound_get_length_in_pcm_frames(&sound, &length);
+            
         }
 
         if (music_command != NONE)
@@ -71,6 +110,7 @@ DWORD WINAPI music_thread(LPVOID lpParam)
             default:
                 assert(false || "Unreachable Case music_thread");
             }
+            music_command = NONE;
         }
 
         // Biar gak busy loop

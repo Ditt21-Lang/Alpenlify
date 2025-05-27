@@ -11,7 +11,7 @@ int main() {
     Tree = NULL;
     CreateQueueMusic(&queue);
     populate_tree(&Tree);
-    init_music_player(NULL);
+    init_music_player(&queue);
 
     // print_children(Tree->fson);
     // test = search_node(Tree, "Dangdut");

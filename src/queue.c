@@ -64,3 +64,7 @@ void PrintQueueMusic(QueueMusic q)
 
     printf("\n");
 }
+
+void destroy_queue(QueueMusic *Q){
+    (void)Q;
+}
