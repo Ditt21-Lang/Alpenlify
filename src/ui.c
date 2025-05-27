@@ -10,7 +10,7 @@
 void menu(MusicNode tree, QueueMusic queue){
     int x, detik = -1;
     while(1){
-        printf("1. Lihat Musik\n2. Tambahkan musik ke queue\n3. Skip\n4. Replay\n5. Skip\nMasukkan pilihan: ");
+        printf("1. Lihat Musik\n2. Tambahkan musik ke queue\n3. Skip\n4. Replay\n5. Skip\n6. Keluar\nMasukkan pilihan: ");
         scanf("%d", &x);
         switch(x){
         case 1: view_music(tree);break;
@@ -25,6 +25,7 @@ void menu(MusicNode tree, QueueMusic queue){
                     printf("Masukkan detik ke berapa: ");
                     scanf("%d", &detik);
                 }seek(detik); break;
+        case 6: return;
         default: break;
     }
     system("cls");
@@ -39,7 +40,7 @@ void menu(MusicNode tree, QueueMusic queue){
 */
 
 void view_music(MusicNode tree){
-    print_tree(tree, 0);
+    (void)tree;
 }
 
 /*

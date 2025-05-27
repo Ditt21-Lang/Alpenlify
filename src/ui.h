@@ -2,6 +2,7 @@
 #define UI_H
 
 #include "player.h"
+#include "tree.h"
 #include <stdio.h>
 #include <conio.h>
 #include <string.h>
