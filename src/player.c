@@ -32,11 +32,10 @@ DWORD WINAPI music_thread(LPVOID lpParam)
     ma_uint64 length;
     ma_result result;
 
-    result = ma_sound_init_from_file(&_music_engine, "C:\\Users\\andip\\Music\\Balatro.mp3", 0, NULL, NULL, &sound);
+    result = ma_sound_init_from_file(&_music_engine, "C:\\Users\\adity\\Music\\SayangCulik.mp3", 0, NULL, NULL, &sound);
 
     if (result != MA_SUCCESS)
     {
-        printf("Failed to load music");
         return -1;
     }
 
