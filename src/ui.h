@@ -2,6 +2,9 @@
 #define UI_H
 
 #include "player.h"
+#include <stdio.h>
+#include <conio.h>
+#include <string.h>
 
 /*
     IS: Terminal kosong
@@ -9,16 +12,7 @@
 
     Creator: Raf
 */
-void menu(); 
-
-/*
-    IS: Meminta user input pilihan 
-    FS: Mengembalikkan value yang diinput
-
-    Creator: Raf
-*/
-
-void input_user(char **buffer);
+void menu(MusicNode tree, QueueMusic queue); 
 
 /*
     IS: Tree tidak kosong  
@@ -54,7 +48,7 @@ void skip();
     Creator:Raf
 */
 
-void rewind();
+void replay();
 
 /*
     IS: Musik berjalan
