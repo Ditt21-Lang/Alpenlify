@@ -48,13 +48,11 @@ DWORD WINAPI music_thread(LPVOID lpParam)
     // Infinity loop
     while (1)
     {
-        // if(ma_sound_at_end(&sound)) {
-        //     printf("Music nya habis cuy\n");
-        // }
-        // if(!is_Empty(*queue) ) {
-        //     printf("Queuenya ada isinya cuy\n");
-        // }
         if(!is_Empty(*queue) && (!ma_sound_is_playing(&sound))) {
+            if (!ma_sound_is_playing(&sound)) {
+                ma_sound_stop(&sound);
+                ma_sound_uninit(&sound);
+            }
             deQueueMusic(queue, &cursor);
             printf("\nMendequeue musik %s", cursor->name);
             // ambil path
@@ -93,6 +91,7 @@ DWORD WINAPI music_thread(LPVOID lpParam)
 
         if (music_command != NONE)
         {
+            printf("Melakukan %d", music_command);
             switch (music_command)
             {
             case NONE:
@@ -106,6 +105,7 @@ DWORD WINAPI music_thread(LPVOID lpParam)
                 break;
             case SKIP:
                 ma_sound_seek_to_pcm_frame(&sound, length);
+                ma_sound_stop(&sound);
                 break;
             default:
                 assert(false || "Unreachable Case music_thread");
@@ -114,7 +114,7 @@ DWORD WINAPI music_thread(LPVOID lpParam)
         }
 
         // Biar gak busy loop
-        Sleep(1000);
+        Sleep(16);
     }
 }
 
