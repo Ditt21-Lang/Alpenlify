@@ -24,7 +24,7 @@
             ["foo", "integer"]
         ],
         "is": "Music player sudah terinisialisasi dan ada isinya ", 
-        "fs": "Music player hilang, gone, ter-deinisialisasi"
+        "fs": "Music player hilang, ter-deinisialisasi"
     },
         {
         "nama": "Andi putra",
@@ -139,7 +139,7 @@
         ],
         "lokal": [],
         "is": "Tree ada",
-        "fs": "Tree ditebang gess tidakkkk kacau"
+        "fs": "Tree ditebang (Sudah terhapus semua)"
     },
     {
         "nama": "Gilang Aditya",

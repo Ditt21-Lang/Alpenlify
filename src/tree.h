@@ -3,12 +3,20 @@
 #include "player.h"
 
 /*
+    IS: Direktori Musik ada di user
+    FS: Tree ada dengan isi direktori musik user
+
+    Creator: Gilang Aditya
+*/
+void read_dir_music(const char *base_path, MusicNode* root);
+
+/*
     IS: Tree belum ada
     FS: Tree ada dengan isi direktori musik user
 
     Creator: Gilang Aditya
 */
-void populate_tree(MusicNode* root);
+void populate_tree(MusicNode** root);
 
 /*
     IS: Tree ada
@@ -16,7 +24,7 @@ void populate_tree(MusicNode* root);
 
     Creator: Gilang Aditya
 */
-void destory_tree(MusicNode* root);
+void destroy_tree(MusicNode* root);
 
 /*
     IS: Tree sudah terbuat
@@ -24,7 +32,7 @@ void destory_tree(MusicNode* root);
 
     Creator: Gilang Aditya
 */
-void print_children(MusicNode parent);
+void print_children(MusicNode* parent);
 
 
 /*
@@ -33,7 +41,7 @@ void print_children(MusicNode parent);
 
     Creator: Gilang Aditya
 */
-void print_tree(MusicNode root, int height);
+void print_tree(MusicNode* root, int height);
 
 
 /*
@@ -51,7 +59,7 @@ MusicTree search_node(MusicTree root, char* target);
 
     Creator: Gilang Aditya
 */
-void add_children(MusicNode* root, char* ingfo);
+void add_children(MusicTree root, char* ingfo);
 
 
 #endif

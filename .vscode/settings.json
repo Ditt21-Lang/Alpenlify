@@ -9,6 +9,8 @@
         "miniaudio.h": "c",
         "linked.h": "c",
         "stack.h": "c",
-        "queue.h": "c"
+        "queue.h": "c",
+        "stat.h": "c",
+        "stdlib.h": "c"
     }
 }
