@@ -219,25 +219,10 @@ Setiap stack, berisi pointer yang menunjuk ke bagian atas stack. Untuk stack-nya
 )
 
 
-== 2.3 ALgoritma
+== 2.3 Algoritma
 
-3. Setelah itu, uraikan logika proses setiap modul yang terdapat pada Structured Chart.
-{ berisi algoritma (menggunakan notasi pseudocode atau flowchart) untuk setiap modul yang dibuat (berisi logika dasar, jadi tidak termasuk layout output di layar). Yang diuraikan disini hanya modul-modul yang merupakan tambahan atau modifikasi dari program sebelumnya. KECUALI jika program dibuat dari nol, maka semua modul yang dibuat oleh kelompok ybs harus dituliskan algoritmanya.
-Lengkapi algoritma dengan kamus data, untuk setiap variabel yang digunakan pada logika proses.
-Jika algoritma merupakan modifikasi/copy dari algoritma/program yang dibuat oleh orang lain diluar anggota kelompok, tuliskan referensinya! }
-
-// Just use jetbrains mono smh
-Algoritma ditulis menggunakan font Courier New ukuran 10, spasi 1). Contoh :
-```
-    Modul UTAMA Begin
-        IF True
-          Then B // call modul B
-        ENDIF
-      WHILE True
-      DO C // call modul C
-      ENDWHILE
-    End Modul UTAMA.
-```
+#let pseudocode = read("data/pseudocode.pas")
+#raw(pseudocode, lang: "pas")
 
 == 2.4 Perancangan Tampilan (Output)
 
