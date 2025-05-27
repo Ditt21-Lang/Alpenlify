@@ -8,9 +8,9 @@
 */
 
 void menu(MusicNode tree, QueueMusic queue){
-    int x, detik = -1;
+    int x, detik;
     while(1){
-        printf("1. Lihat Musik\n2. Tambahkan musik ke queue\n3. Skip\n4. Replay\n5. Skip\n6. Keluar\nMasukkan pilihan: ");
+        printf("1. Lihat Musik\n2. Tambahkan musik ke queue\n3. Skip\n4. Replay\n5. Skip\n6. Keluar\n7. Check Queue\nMasukkan pilihan: ");
         scanf("%d", &x);
         switch(x){
         case 1: view_music(tree);break;
@@ -26,6 +26,9 @@ void menu(MusicNode tree, QueueMusic queue){
                     scanf("%d", &detik);
                 }seek(detik); break;
         case 6: return;
+        case 7: PrintQueueMusic(queue);
+                getch();
+                break;
         default: break;
     }
     system("cls");
@@ -51,9 +54,30 @@ void view_music(MusicNode tree){
 */
 
 void add_music(MusicNode tree, QueueMusic queue){
-    printf("Ini add music");
-    (void)tree;(void)queue;
-    getch();
+    char x[100];
+    MusicTree temp1, temp2;
+    temp1 = &tree;
+    temp2 = temp1;
+    while(1){
+        print_children(temp1);
+        printf("Masukkan nama musik atau folder: ");
+        scanf("%s", x);
+        int len = strlen(x);
+        temp1 = search_node(&tree, x);
+        if(temp1==NULL){
+            printf("Tidak ada file/direktori tersebut\n");
+            temp1 = temp2;
+            continue;
+        }
+        printf("%s\n", x);
+        if (strcmp(&x[len - 4], ".mp3") == 0) {
+                EnQueueMusic(&queue,temp1);
+                return;
+            } else {
+                temp2 = temp1;
+        }
+    }
+    search_node(&tree,x);
 }
 
 /*
