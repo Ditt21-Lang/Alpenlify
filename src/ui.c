@@ -10,7 +10,7 @@
 void menu(MusicNode tree, QueueMusic *queue){
     int x, detik;
     while(1){
-        printf("1. Lihat Musik\n2. Tambahkan musik ke queue\n3. Skip\n4. Replay\n5. Skip\n6. Keluar\n7. Check Queue\nMasukkan pilihan: ");
+        printf("1. Lihat Musik\n2. Tambahkan musik ke queue\n3. Skip\n4. Replay\n5. Seek\n6. Keluar\n7. Check Queue\nMasukkan pilihan: ");
         scanf("%d", &x);
         switch(x){
         case 1: view_music(tree);break;
@@ -87,8 +87,7 @@ void add_music(MusicNode tree, QueueMusic *queue){
 */
 
 void skip(){
-    printf("Ini skip");
-    getch();
+    music_command = SKIP;
 }
 
 /*
@@ -99,8 +98,7 @@ void skip(){
 */
 
 void replay(){
-    printf("Ini replay");
-    getch();
+    music_command = REWIND;
 }
 
 /*
@@ -111,7 +109,5 @@ void replay(){
 */
 
 void seek(int detik){
-    printf("Ini seeks");
-    printf("%d", detik);
-    getch();
+    music_command_args[0] = detik;
 }
