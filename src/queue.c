@@ -57,8 +57,8 @@ void PrintQueueMusic(QueueMusic q)
     printf("Antrian sekarang: ");
     while (cursor != q.rear->next)
     {
-        printf("Printing queue is not supported yet");
-        // printf("%d ", cursor->info);
+        // printf("Printing queue is not supported yet");
+        printf("%s->", cursor->info->name);
         cursor = cursor->next;
     }
 
