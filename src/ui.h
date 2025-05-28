@@ -14,7 +14,7 @@
 
     Creator: Raf
 */
-void menu(MusicNode tree, QueueMusic queue); 
+void menu(MusicNode tree, QueueMusic *queue); 
 
 /*
     IS: Tree tidak kosong  
@@ -32,7 +32,7 @@ void view_music(MusicNode tree);
     Creator: Raf
 */
 
-void add_music(MusicNode tree, QueueMusic queue);
+void add_music(MusicNode tree, QueueMusic *queue);
 
 /*
     IS: Musik dijalankan

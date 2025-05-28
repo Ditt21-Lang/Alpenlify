@@ -50,6 +50,7 @@ void populate_tree(MusicNode** root){
     (*root)->fson = NULL;
     (*root)->nbrother = NULL;
     (*root)->parent = NULL;
+    (*root)->name = strdup("");
     read_dir_music(get_music_folder_path(), *root);
 }
 

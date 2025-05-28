@@ -7,7 +7,7 @@
     Creator: Raf
 */
 
-void menu(MusicNode tree, QueueMusic queue){
+void menu(MusicNode tree, QueueMusic *queue){
     int x, detik;
     while(1){
         printf("1. Lihat Musik\n2. Tambahkan musik ke queue\n3. Skip\n4. Replay\n5. Skip\n6. Keluar\n7. Check Queue\nMasukkan pilihan: ");
@@ -26,7 +26,7 @@ void menu(MusicNode tree, QueueMusic queue){
                     scanf("%d", &detik);
                 }seek(detik); break;
         case 6: return;
-        case 7: PrintQueueMusic(queue);
+        case 7: PrintQueueMusic(*queue);
                 getch();
                 break;
         default: break;
@@ -53,7 +53,7 @@ void view_music(MusicNode tree){
     Creator: Raf
 */
 
-void add_music(MusicNode tree, QueueMusic queue){
+void add_music(MusicNode tree, QueueMusic *queue){
     char x[100];
     MusicTree temp1, temp2;
     temp1 = &tree;
@@ -63,15 +63,14 @@ void add_music(MusicNode tree, QueueMusic queue){
         printf("Masukkan nama musik atau folder: ");
         scanf("%s", x);
         int len = strlen(x);
-        temp1 = search_node(&tree, x);
+        temp1 = search_node(temp1, x);
         if(temp1==NULL){
             printf("Tidak ada file/direktori tersebut\n");
             temp1 = temp2;
             continue;
         }
-        printf("%s\n", x);
         if (strcmp(&x[len - 4], ".mp3") == 0) {
-                EnQueueMusic(&queue,temp1);
+                EnQueueMusic(queue,temp1);
                 return;
             } else {
                 temp2 = temp1;

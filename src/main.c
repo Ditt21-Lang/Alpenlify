@@ -18,7 +18,7 @@ int main() {
     // printf("%s\n", test->name);
     // print_tree(Tree, 0);
 
-    menu(*Tree,queue);
+    menu(*Tree,&queue);
     destroy_music_player();
 
     return 0;
