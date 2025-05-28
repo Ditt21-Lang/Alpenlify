@@ -19,6 +19,8 @@ int main() {
     // print_tree(Tree, 0);
 
     menu(*Tree,&queue);
+    destroy_tree(&Tree);
+    destroy_queue(&queue);
     destroy_music_player();
 
     return 0;
