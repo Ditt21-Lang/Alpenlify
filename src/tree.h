@@ -60,6 +60,15 @@ void print_tree(MusicNode* root, int height);
 */
 MusicTree search_node(MusicTree root, char* target);
 
+/*
+    IS: Direktori Musik ada di user
+    FS: Tree ada dengan isi direktori musik user
+
+    Creator: Gilang Aditya
+*/
+MusicTree specific_search(MusicTree root, char* target);
+
+void print_full_search(MusicTree node);
 
 /*
     IS: Root diketahui 

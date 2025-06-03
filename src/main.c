@@ -6,14 +6,15 @@
 #include "ui.h"
 
 int main() {
-    MusicTree Tree;
+    MusicTree Tree, found;
     QueueMusic queue;
     Tree = NULL;
     CreateQueueMusic(&queue);
     populate_tree(&Tree);
     init_music_player(&queue);
     print_tree(Tree, 4);
-
+    found = specific_search(Tree, "Rich Brian - Dat Stick.mp3");
+    print_full_search(found);
     // print_children(Tree->fson);
     // test = search_node(Tree, "Dangdut");
     // printf("%s\n", test->name);

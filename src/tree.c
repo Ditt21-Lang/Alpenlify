@@ -1,5 +1,6 @@
 #include "tree.h"
 #include "util.h"
+#include "stack.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <Windows.h>
@@ -88,6 +89,61 @@ MusicTree search_node(MusicTree root, char* target){
     }
     
     return search_node(root->nbrother, target);
+}
+
+MusicTree specific_search(MusicTree root, char* target){
+    if(root == NULL){
+        return  NULL;
+    } 
+
+    if(strcmp(root->name, target) == 0){
+        return root;
+    }
+
+    MusicNode* found = specific_search(root->fson, target);
+    if (found != NULL){
+        return found;
+    }
+
+    return specific_search(root->nbrother, target);
+
+}
+
+void print_full_search(MusicTree node){
+    
+    printf("Musik/Direktori yang kamu cari yaitu: %s\n", node->name);
+    printf("Music tersebut berada di:\n");
+    Stack stack;
+    CreateEmpty(&stack);
+    
+    MusicNode *current = node;
+
+    while (current != NULL){
+        Push(&stack, current);
+        current = current->parent; 
+    }
+
+    char full_path[2048];
+    snprintf(full_path, sizeof(full_path), "%s", get_music_folder_path());
+    
+    MusicNode *mn;
+    printf("Music");
+    while (!IsEmpty(stack)){
+        Pop(&stack, &mn);
+
+        int level = 0;
+        MusicNode* temp = mn;
+        while (temp != NULL){
+            level = level + 1;
+            temp = temp->parent;
+        }
+        for(int i = 0; i < level * 2; i++){
+            printf(" ");
+        }
+        printf("%s\n", mn->name);
+
+    }
+    printf("\n");
 }
 
 void destroy_tree(MusicNode* root){
