@@ -61,7 +61,7 @@ void add_music(MusicNode tree, QueueMusic *queue){
     while(1){
         print_children(temp1);
         printf("Masukkan nama musik atau folder: ");
-        scanf("%[^\n]", x);
+        scanf("%s", x);
         int len = strlen(x);
         temp1 = search_node(temp1, x);
         if(temp1==NULL){

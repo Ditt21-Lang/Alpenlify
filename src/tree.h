@@ -3,6 +3,14 @@
 #include "player.h"
 
 /*
+    IS: Diketahui nama file
+    FS: Mengembalikan nilai true jika ada file dengan ekstensi "".mp3"
+
+    Creator: Gilang Aditya
+*/
+boolean end_with_mp3(const char *filename);
+
+/*
     IS: Direktori Musik ada di user
     FS: Tree ada dengan isi direktori musik user
 

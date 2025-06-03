@@ -4,6 +4,10 @@
 #include <stdlib.h>
 #include <Windows.h>
 
+boolean end_with_mp3(const char *filename){
+    const char *exit = strrchr(filename, '.');
+    return exit && _stricmp(exit, ".mp3") == 0;
+}
 
 void read_dir_music(const char *base_path, MusicNode* root){
     WIN32_FIND_DATA find_data;
@@ -22,22 +26,24 @@ void read_dir_music(const char *base_path, MusicNode* root){
     do {
          const char *name = find_data.cFileName;
 
-        if (strcmp(name, ".") == 0 || strcmp(name, "..") == 0 || strcmp(name, "desktop.ini") == 0)
+        if (strcmp(name, ".") == 0 || strcmp(name, "..") == 0)
             continue;
 
         char full_path[1024];
         snprintf(full_path, sizeof(full_path), "%s\\%s", base_path, name);
         
-        add_children(root, strdup(name));
-
-        MusicNode* child = root->fson;
-        while (child->nbrother != NULL){
-            child = child->nbrother;
-        }
-
         if (find_data.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
+            add_children(root, strdup(name));
+            
+            MusicNode* child = root->fson;
+            while (child->nbrother != NULL){
+                child = child->nbrother;
+            }
             read_dir_music(full_path, child);
+        } else if (end_with_mp3(name)){
+            add_children(root, strdup(name));
         }
+
 
     } while (FindNextFile(hFind, &find_data));
 
