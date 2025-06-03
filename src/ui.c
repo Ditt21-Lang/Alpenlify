@@ -23,7 +23,7 @@ void menu(MusicNode tree, QueueMusic *queue){
                     system("cls");
                     printf("Detik tidak boleh kurang dari 0\n");
                     printf("Masukkan detik ke berapa: ");
-                    scanf("%d", &detik);
+                    scanf("%d ", &detik);
                 }seek(detik); break;
         case 6: return;
         case 7: PrintQueueMusic(*queue);
@@ -43,7 +43,10 @@ void menu(MusicNode tree, QueueMusic *queue){
 */
 
 void view_music(MusicNode tree){
-    (void)tree;
+    system("cls");
+    printf("Music");
+    print_tree(&tree, 0);
+    getch();
 }
 
 /*
@@ -61,20 +64,28 @@ void add_music(MusicNode tree, QueueMusic *queue){
     while(1){
         print_children(temp1);
         printf("Masukkan nama musik atau folder: ");
-        scanf("%s", x);
+        fgets(x, 100, stdin);
         int len = strlen(x);
+        x[len-1] = '\0';
         temp1 = search_node(temp1, x);
         if(temp1==NULL){
             printf("Tidak ada file/direktori tersebut\n");
             temp1 = temp2;
+            getch();
             continue;
         }
-        if (strcmp(&x[len - 4], ".mp3") == 0) {
+        if(len>=5){
+            if (strcmp(&x[len - 5], ".mp3") == 0) {
                 EnQueueMusic(queue,temp1);
+                printf("Lagu %s berhasil dimasukkan\n", temp1->name);
+                getch();
                 return;
             } else {
                 temp2 = temp1;
+            }
+        
         }
+    system("cls");
     }
     search_node(&tree,x);
 }

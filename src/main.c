@@ -12,6 +12,7 @@ int main() {
     CreateQueueMusic(&queue);
     populate_tree(&Tree);
     init_music_player(&queue);
+    print_tree(Tree, 0);
     print_tree(Tree, 4);
     found = specific_search(Tree, "Rich Brian - Dat Stick.mp3");
     print_full_search(found);
