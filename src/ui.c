@@ -43,7 +43,10 @@ void menu(MusicNode tree, QueueMusic *queue){
 */
 
 void view_music(MusicNode tree){
-    (void)tree;
+    system("cls");
+    printf("Music");
+    print_tree(&tree, 0);
+    getch();
 }
 
 /*
