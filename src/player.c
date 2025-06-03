@@ -6,12 +6,14 @@
 #include "queue.h"
 #include <assert.h>
 #include "stack.h"
+#include "math.h"
 
 ma_engine _music_engine;
 HANDLE _thread_handle;
 
 MusicCommand music_command = NONE;
 int music_command_args[2] = {0};
+ma_sound sound = {0};
 
 void init_music_player(QueueMusic *music_queue)
 {
@@ -27,9 +29,7 @@ void init_music_player(QueueMusic *music_queue)
 
 DWORD WINAPI music_thread(LPVOID lpParam)
 {
-    UNUSED(lpParam);
     QueueMusic* queue = lpParam;
-    ma_sound sound = {0};
     ma_uint64 length;
     ma_result result;
     Stack stack;
@@ -54,21 +54,28 @@ DWORD WINAPI music_thread(LPVOID lpParam)
                 ma_sound_uninit(&sound);
             }
             deQueueMusic(queue, &cursor);
-            printf("\nMendequeue musik %s", cursor->name);
+            printf("\nMendequeue musik %s\n", cursor->name);
             // ambil path
             path_buffer_len = 0;
             path_len = 0;
             while(cursor->parent != NULL) {
+                // Push ke stack
                 Push(&stack, cursor);
+                // tambahkan panjang ke buffer + 1 buat taruh / setelah nama folder
+                // Jika di akhir, + 1 byte akan jadi null terminator
                 path_buffer_len += strlen(cursor->name) + 1;
                 cursor = cursor->parent;
             }
-            path_buffer_len += music_path_len;
+            // sama, +1 itu buat taruh / 
+            path_buffer_len += music_path_len + 1;
+            
             path_buffer = malloc(sizeof(char) * path_buffer_len);
             strcpy(path_buffer, music_path);
             path_len += music_path_len;
             *(path_buffer + path_len) = '/';
+            // Karena kita append / di akhir sebelumnya
             path_len += 1;
+            
             while(!IsEmpty(stack)) {
                 Pop(&stack, &cursor);
                 strcpy(path_buffer + path_len, cursor->name);
@@ -76,6 +83,7 @@ DWORD WINAPI music_thread(LPVOID lpParam)
                 *(path_buffer + path_len ) = '/';
                 path_len += 1;
             }
+            // override '/' jadi null terminator
             *(path_buffer + path_len - 1) = '\0';
             // Load Music.
             result = ma_sound_init_from_file(&_music_engine, path_buffer, 0, NULL, NULL, &sound);
@@ -113,10 +121,24 @@ DWORD WINAPI music_thread(LPVOID lpParam)
             music_command = NONE;
         }
 
-        // Biar gak busy loop
+        // Biar gak busy loop. Loop 60 frame per second
         Sleep(16);
     }
 }
+
+int get_currently_player_music_length() {
+    float outLen;
+    ma_result res;
+    res = ma_sound_get_length_in_seconds(&sound, &outLen);
+
+    if (res != MA_SUCCESS) {
+        printf("ERROR: %s", ma_result_description(res));
+        return -1;
+    }
+    
+    return (int)floorf(outLen);
+}
+
 
 void destroy_music_player()
 {
