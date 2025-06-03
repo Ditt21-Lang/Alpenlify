@@ -6,7 +6,7 @@
 #include "ui.h"
 
 int main() {
-    MusicTree Tree, found;
+    MusicTree Tree;
     QueueMusic queue;
     PlayerHandle handle;
     Tree = NULL;

@@ -11,7 +11,8 @@
 
 void init_music_player(PlayerHandle *handle, QueueMusic* music_queue){
     ma_result r;
-    PlayerHandle handle;
+    
+    handle->music_queue = music_queue;
     r = ma_engine_init(NULL, &handle->engine);
     if (r != MA_SUCCESS)
     {
