@@ -8,10 +8,11 @@
 int main() {
     MusicTree Tree;
     QueueMusic queue;
+    PlayerHandle handle;
     Tree = NULL;
     CreateQueueMusic(&queue);
     populate_tree(&Tree);
-    init_music_player(&queue);
+    init_music_player(&handle, &queue);
 
     // print_children(Tree->fson);
     // test = search_node(Tree, "Dangdut");
@@ -21,7 +22,7 @@ int main() {
     menu(*Tree,&queue);
     destroy_tree(Tree);
     destroy_queue(&queue);
-    destroy_music_player();
+    destroy_music_player(&handle);
 
     return 0;
 }

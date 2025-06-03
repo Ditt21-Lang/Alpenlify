@@ -8,28 +8,22 @@
 #include "stack.h"
 #include "math.h"
 
-ma_engine _music_engine;
-HANDLE _thread_handle;
 
-MusicCommand music_command = NONE;
-int music_command_args[2] = {0};
-ma_sound sound = {0};
-
-void init_music_player(QueueMusic *music_queue)
-{
+void init_music_player(PlayerHandle *handle, QueueMusic* music_queue){
     ma_result r;
-    r = ma_engine_init(NULL, &_music_engine);
+    PlayerHandle handle;
+    r = ma_engine_init(NULL, &handle->engine);
     if (r != MA_SUCCESS)
     {
         printf("Failed to start engine\n");
         exit(1);
     }
-    _thread_handle = CreateThread(NULL, 0, music_thread, music_queue, 0, NULL);
+    handle->thread_handle = CreateThread(NULL, 0, music_thread, handle, 0, NULL);
 }
 
 DWORD WINAPI music_thread(LPVOID lpParam)
 {
-    QueueMusic* queue = lpParam;
+    PlayerHandle *handle = lpParam;
     ma_uint64 length;
     ma_result result;
     Stack stack;
@@ -48,12 +42,12 @@ DWORD WINAPI music_thread(LPVOID lpParam)
     // Infinity loop
     while (1)
     {
-        if(!is_Empty(*queue) && (!ma_sound_is_playing(&sound))) {
-            if (!ma_sound_is_playing(&sound)) {
-                ma_sound_stop(&sound);
-                ma_sound_uninit(&sound);
+        if(!is_Empty(*handle->music_queue) && (!ma_sound_is_playing(&handle->sound))) {
+            if (!ma_sound_is_playing(&handle->sound)) {
+                ma_sound_stop(&handle->sound);
+                ma_sound_uninit(&handle->sound);
             }
-            deQueueMusic(queue, &cursor);
+            deQueueMusic(handle->music_queue, &cursor);
             printf("\nMendequeue musik %s\n", cursor->name);
             // ambil path
             path_buffer_len = 0;
@@ -86,39 +80,39 @@ DWORD WINAPI music_thread(LPVOID lpParam)
             // override '/' jadi null terminator
             *(path_buffer + path_len - 1) = '\0';
             // Load Music.
-            result = ma_sound_init_from_file(&_music_engine, path_buffer, 0, NULL, NULL, &sound);
+            result = ma_sound_init_from_file(&handle->engine, path_buffer, 0, NULL, NULL, &handle->sound);
             if (result != MA_SUCCESS)
             {
                 return -1;
             }
 
-            ma_sound_start(&sound);
-            ma_sound_get_length_in_pcm_frames(&sound, &length);
+            ma_sound_start(&handle->sound);
+            ma_sound_get_length_in_pcm_frames(&handle->sound, &length);
             
         }
 
-        if (music_command != NONE)
+        if (handle->_command != NONE)
         {
-            printf("Melakukan %d", music_command);
-            switch (music_command)
+            printf("Melakukan %d", handle->_command);
+            switch (handle->_command)
             {
             case NONE:
                 // Should be unreachable, do nothing
                 break;
             case REWIND:
-                ma_sound_seek_to_pcm_frame(&sound, 0);
+                ma_sound_seek_to_pcm_frame(&handle->sound, 0);
                 break;
             case SEEK:
-                ma_sound_seek_to_second(&sound, music_command_args[0]);
+                ma_sound_seek_to_second(&handle->sound, handle->_command_args[0]);
                 break;
             case SKIP:
-                ma_sound_seek_to_pcm_frame(&sound, length);
-                ma_sound_stop(&sound);
+                ma_sound_seek_to_pcm_frame(&handle->sound, length);
+                ma_sound_stop(&handle->sound);
                 break;
             default:
                 assert(false || "Unreachable Case music_thread");
             }
-            music_command = NONE;
+            handle->_command = NONE;
         }
 
         // Biar gak busy loop. Loop 60 frame per second
@@ -126,10 +120,10 @@ DWORD WINAPI music_thread(LPVOID lpParam)
     }
 }
 
-int get_currently_player_music_length() {
+int get_currently_player_music_length(PlayerHandle *handle) {
     float outLen;
     ma_result res;
-    res = ma_sound_get_length_in_seconds(&sound, &outLen);
+    res = ma_sound_get_length_in_seconds(&(handle->sound), &outLen);
 
     if (res != MA_SUCCESS) {
         printf("ERROR: %s", ma_result_description(res));
@@ -140,8 +134,22 @@ int get_currently_player_music_length() {
 }
 
 
-void destroy_music_player()
+void destroy_music_player(PlayerHandle *handle)
 {
-    ma_engine_uninit(&_music_engine);
-    CloseHandle(_thread_handle);
+    ma_engine_uninit(&handle->engine);
+    CloseHandle(handle->thread_handle);
+}
+
+void rewind_music(PlayerHandle *handle){
+    handle->_command = REWIND;
+}
+
+void skip_music(PlayerHandle *handle){
+    handle->_command = SKIP;
+}
+
+
+void seek_music(PlayerHandle *handle, int secs){
+    handle->_command = SEEK;
+    handle->_command_args[0] = secs;
 }
