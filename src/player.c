@@ -34,6 +34,7 @@ DWORD WINAPI music_thread(LPVOID lpParam)
     char *path_buffer;
     size_t path_buffer_len = 0;
     size_t path_len = 0;
+    bool is_loaded = false;
     CreateEmpty(&stack);
 
     music_path = get_music_folder_path();
@@ -44,7 +45,7 @@ DWORD WINAPI music_thread(LPVOID lpParam)
     while (1)
     {
         if(!is_Empty(*handle->music_queue) && (!ma_sound_is_playing(&handle->sound))) {
-            if (!ma_sound_is_playing(&handle->sound)) {
+            if (is_loaded) {
                 ma_sound_stop(&handle->sound);
                 ma_sound_uninit(&handle->sound);
             }
@@ -89,12 +90,11 @@ DWORD WINAPI music_thread(LPVOID lpParam)
 
             ma_sound_start(&handle->sound);
             ma_sound_get_length_in_pcm_frames(&handle->sound, &length);
-            
+            is_loaded = true;
         }
 
         if (handle->_command != NONE)
         {
-            printf("Melakukan %d", handle->_command);
             switch (handle->_command)
             {
             case NONE:

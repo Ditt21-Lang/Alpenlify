@@ -1,0 +1,32 @@
+[
+    {
+        "fitur": "gilang mas",
+        "penjelasan": "Ini buatan gilang",
+        "screenhoot": "tmp.png",
+        "data": [
+            {
+                "nama_case": "Ini test 1",
+                "data_input": "Ini input",
+                "expected": "response = 69",
+                "actual": "response = 69",
+                "ss": "tmp.png",
+                "result": "PASS"
+            }
+        ]
+    },
+    {
+        "fitur": "Buatan gilag",
+        "penjelasan": "keren",
+        "screenhoot": "tmp.png",
+        "data": [
+            {
+                "nama_case": "Ini test 2",
+                "data_input": "Ini input",
+                "expected": "response = 69",
+                "actual": "response = 420",
+                "ss": "tmp.png",
+                "result": "FAILED"
+            }
+        ]
+    }
+]

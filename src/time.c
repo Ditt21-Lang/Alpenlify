@@ -46,7 +46,7 @@ int second_to_hour(int *second){
 int second_to_minute(int *second){
     int minute = 0;
     minute = *second/60;
-    *second = *second/60;
+    *second = *second%60;
     return minute;
 }
 
@@ -108,8 +108,8 @@ int time_to_second(char time[10]){
         num[1] = time[4];
         second += atoi(num);
     } else {
-        num[0] = time[3];
-        num[1] = time[4];
+        num[0] = time[0];
+        num[1] = time[1];
         second += atoi(num);
     }
     

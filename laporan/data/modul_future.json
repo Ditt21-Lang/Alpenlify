@@ -1,0 +1,72 @@
+[
+    {
+        "modul_name": "Mas gilang",
+        "modules": [
+            {
+                "nama": "Gilang Aditya",
+                "modul": "add_children",
+                "deskripsi": "Menambahkan anak baru ke sebuah node root",
+                "tipe": "Procedure",
+                "parameter": [
+                    "root",
+                    "MusicNode*",
+                    "ingfo",
+                    "char*"
+                ],
+                "lokal": [
+                    "bar",
+                    "int",
+                    "baz",
+                    "char *"
+                ],
+                "is": "Root diketahui",
+                "fs": "children bertambah (music atau driektori)"
+            }
+        ]
+    },
+    {
+        "modul_name": "Gilang lagi",
+        "modules": [
+            {
+                "nama": "Gilang Aditya",
+                "modul": "add_children",
+                "deskripsi": "Menambahkan anak baru ke sebuah node root",
+                "tipe": "Procedure",
+                "parameter": [
+                    "root",
+                    "MusicNode*",
+                    "ingfo",
+                    "char*"
+                ],
+                "lokal": [
+                    "bar",
+                    "int",
+                    "baz",
+                    "char *"
+                ],
+                "is": "Root diketahui",
+                "fs": "children bertambah (music atau driektori)"
+            },
+            {
+                "nama": "Gilang Aditya",
+                "modul": "add_children",
+                "deskripsi": "Menambahkan anak baru ke sebuah node root",
+                "tipe": "Procedure",
+                "parameter": [
+                    "root",
+                    "MusicNode*",
+                    "ingfo",
+                    "char*"
+                ],
+                "lokal": [
+                    "bar",
+                    "int",
+                    "baz",
+                    "char *"
+                ],
+                "is": "Root diketahui",
+                "fs": "children bertambah (music atau driektori)"
+            }
+        ]
+    }
+]

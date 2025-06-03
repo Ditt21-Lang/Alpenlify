@@ -186,38 +186,83 @@ Setiap stack, berisi pointer yang menunjuk ke bagian atas stack. Untuk stack-nya
 == 2.2 Tabel Prosedur
 
 // TODO: generate table dari suatu tempat, jangan langsung taroh disini
-#table(
+// #table(
+//   columns: (30pt, 90pt, 70pt, 60pt, 150pt, 60pt),
+//   [*No*], [*Nama Modul*], [*Deskripsi*], [*Jenis*], [*Parameter*], [*Kamus Data (lokal)*],
+//   // Ilmu hitam typst.
+//   ..json("data/modul.json")
+//     .enumerate()
+//     .map(data => {
+//       let (i, v) = data
+//       return (str(i + 1), [
+//         #v.modul
+//         \
+//         *Pembuat*:\ 
+//         #v.nama
+//         ], v.deskripsi, v.tipe, [
+          
+//           #let n = 0
+//           #while (n < v.parameter.len()) {
+//             [
+//               #v.parameter.at(n) 
+//               :
+//               #v.parameter.at(n + 1) \ ]
+//             n = n + 2
+//           } 
+          
+//           IS:
+//           #v.is\
+//           FS:
+//           #v.fs
+//         ] , "")
+//     }).flatten()
+// )
+#for module in json("data/modul_future.json").enumerate() [
+  #let (i, modules) = module;
+  
+  == 2.2.#(i + 1) #modules.at("modul_name")
+
+  #table(
   columns: (30pt, 90pt, 70pt, 60pt, 150pt, 60pt),
   [*No*], [*Nama Modul*], [*Deskripsi*], [*Jenis*], [*Parameter*], [*Kamus Data (lokal)*],
-  // Ilmu hitam typst.
-  ..json("data/modul.json")
+    ..modules.at("modules")
     .enumerate()
     .map(data => {
       let (i, v) = data
+
       return (str(i + 1), [
         #v.modul
         \
-        *Pembuat*:\ 
+        *Pembuat*: \ 
         #v.nama
-        ], v.deskripsi, v.tipe, [
-          
-          #let n = 0
-          #while (n < v.parameter.len()) {
+      ]
+      , v.deskripsi, v.tipe, [
+         #let n = 0
+        #while (n < v.parameter.len()) {
             [
               #v.parameter.at(n) 
               :
               #v.parameter.at(n + 1) \ ]
             n = n + 2
-          } 
+        } 
           
           IS:
           #v.is\
           FS:
           #v.fs
-        ] , "")
+      ], [
+        #let n = 0
+        #while (n < v.lokal.len()) {
+            [
+              #v.lokal.at(n) 
+              :
+              #v.lokal.at(n + 1) \ ]
+            n = n + 2
+        } 
+      ])
     }).flatten()
-)
-
+  )
+]
 
 == 2.3 Algoritma
 
@@ -244,7 +289,29 @@ Tampilan diatas adalah tampilan yang akan muncul saat pengguna memasuki menu "Se
 
 
 #pagebreak()
-= BAB 3 KESIMPULAN
+
+= BAB 3 HASIL AKHIR PROGRAM
+
+== 3.1. Pembahasan Hasil Implementasi
+#for module in json("data/test.json").enumerate() [
+  #let (i, data) = module
+  #(i + 1). Fitur #data.fitur \
+  - #data.penjelasan
+  #image("test/" + data.screenhoot)
+  #table(
+     columns: (30pt, 70pt, 80pt, 80pt, 150pt, 70pt),
+    [No], [Data Input], [Hasil yang diharapkan], [Hasil Keluaran Program], [Screen Capture], [Hasil \ Pengujian], 
+    ..data.data
+    .enumerate()
+    .map(data => {
+      let (i, test) = data
+      return (str(i + 1), test.data_input, test.expected, test.actual, image("test/"+test.ss), test.result)
+    }).flatten()
+  )
+]
+
+#pagebreak()
+= BAB 4 KESIMPULAN
 
 Berisi kesimpulan pencapaian tugas (apa yang sudah selesai dan apa saja yang belum / sejauh mana implementasi yang berhasil diselesaikan (versus spesifikasi yang diuraikan pada BAB I)).
 
