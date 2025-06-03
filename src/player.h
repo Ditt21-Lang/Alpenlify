@@ -52,6 +52,12 @@ void init_music_player(QueueMusic* music_queue);
 void destroy_music_player();
 
 /*
+    IS: Music player sudah terinisialisasi
+    FS: mengembalikan panjang dari musik dalam detik. Jika error, mengembalikan -1
+*/
+int get_currently_player_music_length();
+
+/*
     IS: Thread terbuat
     FS: -
 
