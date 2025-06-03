@@ -4,6 +4,8 @@
 #include "player.h"
 #include "tree.h"
 #include "queue.h"
+#include "time.h"
+#include <ctype.h>
 #include <stdio.h>
 #include <conio.h>
 #include <string.h>
@@ -14,7 +16,7 @@
 
     Creator: Raf
 */
-void menu(MusicNode tree, QueueMusic *queue); 
+void menu(MusicNode tree, QueueMusic *queue, PlayerHandle *handle); 
 
 /*
     IS: Tree tidak kosong  
@@ -41,7 +43,7 @@ void add_music(MusicNode tree, QueueMusic *queue);
     Creator: Raf
 */
 
-void skip();
+void skip(PlayerHandle *handle);
 
 /*
     IS: Musik berjalan
@@ -50,7 +52,7 @@ void skip();
     Creator:Raf
 */
 
-void replay();
+void replay(PlayerHandle *handle);
 
 /*
     IS: Musik berjalan
@@ -59,7 +61,7 @@ void replay();
     Creator:Raff
 */
 
-void seek(int detik);
+void seek(PlayerHandle *handle);
 
 
 

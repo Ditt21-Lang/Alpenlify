@@ -13,13 +13,14 @@ int main() {
     CreateQueueMusic(&queue);
     populate_tree(&Tree);
     init_music_player(&handle, &queue);
+    print_tree(Tree, 0);
 
     // print_children(Tree->fson);
     // test = search_node(Tree, "Dangdut");
     // printf("%s\n", test->name);
     // print_tree(Tree, 0);
 
-    menu(*Tree,&queue);
+    menu(*Tree,&queue, &handle);
     destroy_tree(Tree);
     destroy_queue(&queue);
     destroy_music_player(&handle);

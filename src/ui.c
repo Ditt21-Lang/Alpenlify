@@ -7,24 +7,17 @@
     Creator: Raf
 */
 
-void menu(MusicNode tree, QueueMusic *queue){
-    int x, detik;
+void menu(MusicNode tree, QueueMusic *queue, PlayerHandle *handle){
+    int x;
     while(1){
         printf("1. Lihat Musik\n2. Tambahkan musik ke queue\n3. Skip\n4. Replay\n5. Seek\n6. Keluar\n7. Check Queue\nMasukkan pilihan: ");
         scanf("%d", &x);
         switch(x){
         case 1: view_music(tree);break;
         case 2: add_music(tree,queue);break;
-        case 3: skip(); break;
-        case 4: replay(); break;
-        case 5: printf("Masukkan detik ke berapa");
-                scanf("%d", &detik);
-                while(detik<0){
-                    system("cls");
-                    printf("Detik tidak boleh kurang dari 0\n");
-                    printf("Masukkan detik ke berapa: ");
-                    scanf("%d ", &detik);
-                }seek(detik); break;
+        case 3: skip(handle); break;
+        case 4: replay(handle); break;
+        case 5: seek(handle); break;
         case 6: return;
         case 7: PrintQueueMusic(*queue);
                 getch();
@@ -97,8 +90,8 @@ void add_music(MusicNode tree, QueueMusic *queue){
     Creator: Raf
 */
 
-void skip(){
-    music_command = SKIP;
+void skip(PlayerHandle *handle){
+    skip_music(handle);
 }
 
 /*
@@ -108,8 +101,8 @@ void skip(){
     Creator:Raf
 */
 
-void replay(){
-    music_command = REWIND;
+void replay(PlayerHandle *handle){
+    rewind_music(handle);
 }
 
 /*
@@ -119,6 +112,31 @@ void replay(){
     Creator:Raff
 */
 
-void seek(int detik){
-    music_command_args[0] = detik;
+void seek(PlayerHandle *handle){
+    int second = get_currently_player_music_length(handle);
+    int detik = -1;
+    char waktu[10];
+    loop:
+    while(detik < 0 || detik > second){
+        system("cls");
+        printf("Panjang lagu saat ini: ");
+        second_to_time(second);
+        printf("Contoh waktu seek:\n12 (detik saja)\n02:52 (menit:detik)\n01:53:23 (jam:menit:detik)\nPastikan ada 0 apabila bilangan satuan\n");
+        printf("Masukkan detik ke berapa: ");
+        scanf("%s", waktu);
+        for(int i=0;waktu[i]!='\0';i++){
+            if(!isdigit(waktu[i]) && waktu[i] != ':'){
+                printf("Hanya masukkan angka atau ':'\n");
+                getch();
+                goto loop;
+            }
+        }
+        detik = time_to_second(waktu);
+        if(detik > second){
+            printf("Waktu yang diinputkan melebihi waktu lagu\n");
+            getch();
+            continue;
+        }
+    }
+    seek_music(handle, detik);
 }
