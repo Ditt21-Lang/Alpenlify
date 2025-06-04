@@ -121,7 +121,7 @@ void seek(PlayerHandle *handle){
         system("cls");
         printf("Panjang lagu saat ini: ");
         second_to_time(second);
-        printf("Contoh waktu seek:\n12 (detik saja)\n02:52 (menit:detik)\n01:53:23 (jam:menit:detik)\nPastikan ada 0 apabila bilangan satuan\n");
+        printf("Contoh waktu seek:\n12 (detik saja)\n2:52 (menit:detik)\n1:53:23 (jam:menit:detik)\n");
         printf("Masukkan detik ke berapa: ");
         scanf("%s", waktu);
         for(int i=0;waktu[i]!='\0';i++){

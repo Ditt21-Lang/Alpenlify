@@ -62,10 +62,13 @@ Program music player adalah aplikasi perangkat lunak yang berfungsi untuk membac
 Alpenlify adalah salah satu aplikasi pemutar musik yang dibuat untuk memenuhi tugas besar mata kuliah Struktur Data dan Algoritma. Alpenlify memiliki fitur sebagai berikut:
 
 + Memutar musik.
-+ Membuat Playing Queue.
++ Membuat Playing _queue_.
 + _Seek_ waktu musik.
-+ _Skip_ musik di playing queue.
++ _Skip_ musik di _playing queue_.
 + _Rewind_ musik yang sedang berjalan.
++ _Search_ musik secara spesifik.
++ Lihat direktori musik.
++ Cek _queue_ musik.
 
 Untuk memastikan pengguna dapat menjalankan program dengan benar dan memanfaatkan seluruh fitur yang tersedia, berikut ini adalah aturan-aturan penggunaan yang harus diperhatikan selama program dijalankan.
 
@@ -77,7 +80,7 @@ Untuk memastikan pengguna dapat menjalankan program dengan benar dan memanfaatka
 
 + Pengguna dapat melewati lagu yang sedang diputar dan langsung melanjutkan ke lagu berikutnya dalam antrian, jika ada.
 
-+ Pengguna dapat memindahkan posisi waktu pemutaran lagu dengan memasukkan nilai waktu dalam satuan detik, sehingga pemutaran akan dilanjutkan dari waktu yang ditentukan.
++ Pengguna dapat memindahkan posisi waktu pemutaran lagu dengan memasukkan nilai waktu dalam satuan waktu, yakni detik saja, menit dan detik, serta jam, menit, detik.
 
 Selain aturan penggunaan, terdapat beberapa batasan yang perlu diketahui oleh pengguna. Batasan-batasan ini menggambarkan keterbatasan fitur dalam program dan ruang lingkup fungsionalitas yang disediakan.
 
