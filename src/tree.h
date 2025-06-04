@@ -60,6 +60,8 @@ void print_tree(MusicNode* root, int height);
 */
 MusicTree search_node(MusicTree root, char* target);
 
+void input_specific_search(MusicTree root);
+
 /*
     IS: Tree Musik ada
     FS: Mengembalikan node music yang dicari
