@@ -92,7 +92,7 @@ MusicTree search_node(MusicTree root, char* target){
 }
 
 void input_specific_search(MusicTree root){
-    char input[100];
+    char input[1024];
     MusicTree found;
     printf("Masukkan Nama file: ");
     fgets(input, sizeof(input), stdin);
