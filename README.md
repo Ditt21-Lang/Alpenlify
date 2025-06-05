@@ -32,15 +32,11 @@ Pastikan Anda telah menginstal salah satu compiler berikut:
 - zig (opsional, jika ingin menggunakan Zig sebagai compiler C)
 
 ### Compile dan Jalankan
-```bash
-# Dengan gcc
-gcc -o alpenlify main.c -lm
-./alpenlify
+Buka file `build.sh` lalu ubah variable CC dengan compiler yang kamu gunakan. Lalu eksekusi
 
-# Dengan clang
-clang -o alpenlify main.c -lm
-./alpenlify
+```sh
+./main.exe
+# atau beberapa compiler mengeluarkan tanpa extensi (misalnya zig)
+./main
 
-# Dengan zig (menggunakan zig sebagai C compiler)
-zig cc -o alpenlify main.c -lm
-./alpenlify
+```
