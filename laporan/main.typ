@@ -185,45 +185,13 @@ Setiap stack, berisi pointer yang menunjuk ke bagian atas stack. Untuk stack-nya
 
 == 2.2 Tabel Prosedur
 
-// TODO: generate table dari suatu tempat, jangan langsung taroh disini
-// #table(
-//   columns: (30pt, 90pt, 70pt, 60pt, 150pt, 60pt),
-//   [*No*], [*Nama Modul*], [*Deskripsi*], [*Jenis*], [*Parameter*], [*Kamus Data (lokal)*],
-//   // Ilmu hitam typst.
-//   ..json("data/modul.json")
-//     .enumerate()
-//     .map(data => {
-//       let (i, v) = data
-//       return (str(i + 1), [
-//         #v.modul
-//         \
-//         *Pembuat*:\ 
-//         #v.nama
-//         ], v.deskripsi, v.tipe, [
-          
-//           #let n = 0
-//           #while (n < v.parameter.len()) {
-//             [
-//               #v.parameter.at(n) 
-//               :
-//               #v.parameter.at(n + 1) \ ]
-//             n = n + 2
-//           } 
-          
-//           IS:
-//           #v.is\
-//           FS:
-//           #v.fs
-//         ] , "")
-//     }).flatten()
-// )
 #for module in json("data/modul_future.json").enumerate() [
   #let (i, modules) = module;
   
   == 2.2.#(i + 1) #modules.at("modul_name")
 
   #table(
-  columns: (30pt, 90pt, 70pt, 60pt, 150pt, 60pt),
+  columns: (15pt, 100pt, 70pt, 60pt, 150pt, 100pt),
   [*No*], [*Nama Modul*], [*Deskripsi*], [*Jenis*], [*Parameter*], [*Kamus Data (lokal)*],
     ..modules.at("modules")
     .enumerate()
@@ -231,7 +199,17 @@ Setiap stack, berisi pointer yang menunjuk ke bagian atas stack. Untuk stack-nya
       let (i, v) = data
 
       return (str(i + 1), [
-        #v.modul
+        #if v.modul.len() > 15 {
+          [
+          #v.modul.slice(0, 15)
+          \
+          #v.modul.slice(15)
+
+          ]
+          
+        } else {
+          v.modul
+        }
         \
         *Pembuat*: \ 
         #v.nama

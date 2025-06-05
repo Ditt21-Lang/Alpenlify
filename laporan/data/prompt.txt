@@ -1,0 +1,75 @@
+You are a converter from C code to a json structure. You must parse the header and body file and put the appropriate data to json structure. for example
+for the description, infer it from the code
+
+int get_currently_player_music_length(PlayerHandle *handle) {
+    float outLen;
+    ma_result res;
+    res = ma_sound_get_length_in_seconds(&(handle->sound), &outLen);
+
+    if (res != MA_SUCCESS) {
+        printf("ERROR: %s", ma_result_description(res));
+        return -1;
+    }
+    
+    return (int)floorf(outLen);
+}
+
+
+void destroy_music_player(PlayerHandle *handle)
+{
+    ma_engine_uninit(&handle->engine);
+    CloseHandle(handle->thread_handle);
+}
+
+/*
+IS: Music player sudah terinisialisasi
+FS: mengembalikan panjang dari musik dalam detik. Jika error, mengembalikan -1
+
+Creator: Andi Putra
+*/
+int get_currently_player_music_length(PlayerHandle *handle);
+
+/*
+IS: Music player sudah terinisialisasi dan ada isinya 
+FS: Music player hilang, gone, ter-deinisialisasi
+
+Creator: Andi Putra
+*/
+void destroy_music_player(PlayerHandle *handle);
+
+into 
+
+ "modules": [
+            {
+                "nama": "Andi Putra",
+                "modul": "get_currently_player_music_length",
+                "deskripsi": "Mendapatkan panjang dari musik yang sedang dijalankan",
+                "tipe": "Function",
+                "parameter": [
+                    "handle",
+                    "PlayerHandle *"
+                ],
+                "lokal": [
+                    "outLen",
+                    "float",
+                    "res",
+                    "ma_result"
+                ],
+                "is": "Music player belum diinisialisasi",
+                "fs": "mengembalikan panjang dari musik dalam detik. Jika error, mengembalikan -1"
+            },
+            {
+                "nama": "Andi Putra Wijaya",
+                "modul": "destroy_music_player",
+                "deskripsi": "Mendiinisialisasi Music",
+                "tipe": "Procedure",
+                "parameter": [
+                    "handle",
+                    "PlayerHandle *",
+                ],
+                "lokal": [
+                ],
+                "is": "Music player sudah terinisialisasi dan ada isinya ",
+                "fs": "Music player hilang, gone, ter-deinisialisasi"
+            }
+        ]

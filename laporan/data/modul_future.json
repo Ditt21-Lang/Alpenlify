@@ -1,23 +1,191 @@
 [
     {
-        "modul_name": "Mas gilang",
+        "modul_name": "Tree",
         "modules": [
             {
                 "nama": "Gilang Aditya",
-                "modul": "add_children",
-                "deskripsi": "Menambahkan anak baru ke sebuah node root",
+                "modul": "end_with_mp3",
+                "deskripsi": "Mengecek apakah nama file diakhiri dengan ekstensi \".mp3\".",
+                "tipe": "Function",
+                "parameter": [
+                    "filename",
+                    "const char *"
+                ],
+                "lokal": [
+                    "exit",
+                    "const char *"
+                ],
+                "is": "Diketahui nama file",
+                "fs": "Mengembalikan nilai true jika ada file dengan ekstensi \".mp3\""
+            },
+            {
+                "nama": "Gilang Aditya",
+                "modul": "read_dir_music",
+                "deskripsi": "Membaca isi direktori secara rekursif dan membangun sub-tree untuk node root yang diberikan, menambahkan direktori dan file .mp3 sebagai children.",
+                "tipe": "Procedure",
+                "parameter": [
+                    "base_path",
+                    "const char *",
+                    "root",
+                    "MusicNode*"
+                ],
+                "lokal": [
+                    "find_data",
+                    "WIN32_FIND_DATA",
+                    "hFind",
+                    "HANDLE",
+                    "search_path",
+                    "char[1024]",
+                    "name",
+                    "const char *",
+                    "full_path",
+                    "char[1024]",
+                    "child",
+                    "MusicNode*"
+                ],
+                "is": "Direktori Musik ada di user",
+                "fs": "Tree ada dengan isi direktori musik user"
+            },
+            {
+                "nama": "Gilang Aditya",
+                "modul": "populate_tree",
+                "deskripsi": "Menginisialisasi tree musik utama dan mengisinya dengan data dari direktori musik default pengguna.",
+                "tipe": "Procedure",
+                "parameter": [
+                    "root",
+                    "MusicNode**"
+                ],
+                "lokal": [],
+                "is": "Tree belum ada",
+                "fs": "Tree ada dengan isi direktori musik user"
+            },
+            {
+                "nama": "Gilang Aditya",
+                "modul": "destroy_tree",
+                "deskripsi": "Menghapus semua node dalam tree musik secara rekursif untuk membebaskan memori.",
+                "tipe": "Procedure",
+                "parameter": [
+                    "root",
+                    "MusicNode*"
+                ],
+                "lokal": [],
+                "is": "Tree ada",
+                "fs": "Tree ditebang gess tidakkkk kacau"
+            },
+            {
+                "nama": "Gilang Aditya",
+                "modul": "print_children",
+                "deskripsi": "Mencetak nama-nama dari semua child langsung dari sebuah node parent.",
+                "tipe": "Procedure",
+                "parameter": [
+                    "parent",
+                    "MusicNode*"
+                ],
+                "lokal": [
+                    "child",
+                    "MusicNode*"
+                ],
+                "is": "Tree sudah terbuat",
+                "fs": "children dari sebuah parent ditampilkan"
+            },
+            {
+                "nama": "Gilang Aditya",
+                "modul": "print_tree",
+                "deskripsi": "Mencetak keseluruhan struktur tree musik dengan indentasi (pre-order, fson kemudian nbrother) untuk menunjukkan hierarki.",
                 "tipe": "Procedure",
                 "parameter": [
                     "root",
                     "MusicNode*",
+                    "height",
+                    "int"
+                ],
+                "lokal": [
+                    "i",
+                    "int"
+                ],
+                "is": "Tree sudah terbuat",
+                "fs": "Tree ditampilkan dengan bentuk pre order tapi dari kanan"
+            },
+            {
+                "nama": "Gilang Aditya",
+                "modul": "search_node",
+                "deskripsi": "Mencari sebuah node dalam tree berdasarkan namanya secara rekursif (pre-order traversal).",
+                "tipe": "Function",
+                "parameter": [
+                    "root",
+                    "MusicTree",
+                    "target",
+                    "char*"
+                ],
+                "lokal": [
+                    "found_in_fson",
+                    "MusicTree"
+                ],
+                "is": "Tree sudah terbuat",
+                "fs": "Node yang dicari dikembalikan"
+            },
+            {
+                "nama": "Gilang Aditya",
+                "modul": "specific_search",
+                "deskripsi": "Mencari sebuah node musik spesifik dalam tree berdasarkan namanya secara rekursif (serupa dengan search_node).",
+                "tipe": "Function",
+                "parameter": [
+                    "root",
+                    "MusicTree",
+                    "target",
+                    "char*"
+                ],
+                "lokal": [
+                    "found",
+                    "MusicNode*"
+                ],
+                "is": "Tree Musik ada",
+                "fs": "Mengembalikan node music yang dicari"
+            },
+            {
+                "nama": "Gilang Aditya",
+                "modul": "print_specific_search",
+                "deskripsi": "Menampilkan path lengkap dari root direktori musik hingga node yang dicari, beserta nama node tersebut dengan indentasi.",
+                "tipe": "Procedure",
+                "parameter": [
+                    "node",
+                    "MusicTree"
+                ],
+                "lokal": [
+                    "stack",
+                    "Stack",
+                    "current",
+                    "MusicNode *",
+                    "full_path",
+                    "char[2048]",
+                    "mn",
+                    "MusicNode *",
+                    "level",
+                    "int",
+                    "temp",
+                    "MusicNode*",
+                    "i",
+                    "int"
+                ],
+                "is": "Node musik yang dicari ada",
+                "fs": "Menampilkan music yang dicari dan direktorinya"
+            },
+            {
+                "nama": "Gilang Aditya",
+                "modul": "add_children",
+                "deskripsi": "Menambahkan sebuah node baru sebagai child dari node parent yang diberikan dalam tree.",
+                "tipe": "Procedure",
+                "parameter": [
+                    "root",
+                    "MusicTree",
                     "ingfo",
                     "char*"
                 ],
                 "lokal": [
-                    "bar",
-                    "int",
-                    "baz",
-                    "char *"
+                    "new_child",
+                    "MusicNode*",
+                    "temp",
+                    "MusicNode*"
                 ],
                 "is": "Root diketahui",
                 "fs": "children bertambah (music atau driektori)"
@@ -25,47 +193,133 @@
         ]
     },
     {
-        "modul_name": "Gilang lagi",
+        "modul_name": "Player.h",
         "modules": [
             {
-                "nama": "Gilang Aditya",
-                "modul": "add_children",
-                "deskripsi": "Menambahkan anak baru ke sebuah node root",
+                "nama": "Andi Putra",
+                "modul": "init_music_player",
+                "deskripsi": "Menginisialisasi music player dan memulai thread pemutaran.",
                 "tipe": "Procedure",
                 "parameter": [
-                    "root",
-                    "MusicNode*",
-                    "ingfo",
-                    "char*"
+                    "handle",
+                    "PlayerHandle *",
+                    "music_queue",
+                    "QueueMusic *"
                 ],
                 "lokal": [
-                    "bar",
-                    "int",
-                    "baz",
-                    "char *"
+                    "r",
+                    "ma_result"
                 ],
-                "is": "Root diketahui",
-                "fs": "children bertambah (music atau driektori)"
+                "is": "Music player belum diinisialisasi",
+                "fs": "Music player sudah diinisialisasi"
             },
             {
-                "nama": "Gilang Aditya",
-                "modul": "add_children",
-                "deskripsi": "Menambahkan anak baru ke sebuah node root",
+                "nama": "Andi Putra",
+                "modul": "destroy_music_player",
+                "deskripsi": "Menghentikan engine musik dan menutup thread handle.",
                 "tipe": "Procedure",
                 "parameter": [
-                    "root",
-                    "MusicNode*",
-                    "ingfo",
-                    "char*"
+                    "handle",
+                    "PlayerHandle *"
+                ],
+                "lokal": [],
+                "is": "Music player sudah terinisialisasi dan ada isinya ",
+                "fs": "Music player hilang, gone, ter-deinisialisasi"
+            },
+            {
+                "nama": "Andi Putra",
+                "modul": "get_currently_player_music_length",
+                "deskripsi": "Mendapatkan panjang musik yang sedang diputar dalam detik.",
+                "tipe": "Function",
+                "parameter": [
+                    "handle",
+                    "PlayerHandle *"
                 ],
                 "lokal": [
-                    "bar",
-                    "int",
-                    "baz",
-                    "char *"
+                    "outLen",
+                    "float",
+                    "res",
+                    "ma_result"
                 ],
-                "is": "Root diketahui",
-                "fs": "children bertambah (music atau driektori)"
+                "is": "Music player sudah terinisialisasi",
+                "fs": "mengembalikan panjang dari musik dalam detik. Jika error, mengembalikan -1"
+            },
+            {
+                "nama": "Andi Putra",
+                "modul": "music_thread",
+                "deskripsi": "Thread worker yang memproses antrian musik, memuat, memainkan, dan mengontrol musik (rewind, seek, skip).",
+                "tipe": "Function",
+                "parameter": [
+                    "lpParam",
+                    "LPVOID"
+                ],
+                "lokal": [
+                    "handle",
+                    "PlayerHandle *",
+                    "length",
+                    "ma_uint64",
+                    "result",
+                    "ma_result",
+                    "stack",
+                    "Stack",
+                    "cursor",
+                    "MusicTree",
+                    "music_path",
+                    "char *",
+                    "music_path_len",
+                    "size_t",
+                    "path_buffer",
+                    "char *",
+                    "path_buffer_len",
+                    "size_t",
+                    "path_len",
+                    "size_t",
+                    "is_loaded",
+                    "bool"
+                ],
+                "is": "Thread terbuat",
+                "fs": "-"
+            },
+            {
+                "nama": "Andi Putra",
+                "modul": "rewind_music",
+                "deskripsi": "Mengirim perintah untuk memutar ulang musik saat ini dari awal.",
+                "tipe": "Procedure",
+                "parameter": [
+                    "handle",
+                    "PlayerHandle *"
+                ],
+                "lokal": [],
+                "is": "Thread terbuat",
+                "fs": "merewind musik dari awal"
+            },
+            {
+                "nama": "Andi Putra",
+                "modul": "skip_music",
+                "deskripsi": "Mengirim perintah untuk melompati musik yang sedang diputar.",
+                "tipe": "Procedure",
+                "parameter": [
+                    "handle",
+                    "PlayerHandle *"
+                ],
+                "lokal": [],
+                "is": "Thread terbuat",
+                "fs": "menskip musik dari awal"
+            },
+            {
+                "nama": "Andi Putra",
+                "modul": "seek_music",
+                "deskripsi": "Mengirim perintah untuk memindahkan posisi pemutaran musik ke detik tertentu.",
+                "tipe": "Procedure",
+                "parameter": [
+                    "handle",
+                    "PlayerHandle *",
+                    "secs",
+                    "int"
+                ],
+                "lokal": [],
+                "is": "Thread terbuat",
+                "fs": "seek musik ke detik yang ditentukan"
             }
         ]
     }
