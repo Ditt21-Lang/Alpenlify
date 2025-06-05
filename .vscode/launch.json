@@ -11,6 +11,12 @@
             "program": "${workspaceFolder}/main",
             "args": [],
             "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "attach",
+            "name": "Attach",
+            "program": "${workspaceFolder}/main",
         }
     ]
 }

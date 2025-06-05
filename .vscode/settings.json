@@ -12,6 +12,7 @@
         "queue.h": "c",
         "stat.h": "c",
         "stdlib.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "tree.h": "c"
     }
 }

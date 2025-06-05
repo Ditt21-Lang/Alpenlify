@@ -73,3 +73,86 @@ into
                 "fs": "Music player hilang, gone, ter-deinisialisasi"
             }
         ]
+
+
+=== 
+
+You are a converter from C code to a pseudocode with certain rules, You must parse the body and simply output the resulting pseudocode.
+
+For example, this code will be converted as.
+
+void add_music(MusicNode tree, QueueMusic *queue){
+    char x[1024];
+    MusicTree temp1, temp2;
+    temp1 = &tree;
+    temp2 = temp1;
+    while(1){
+        print_children(temp1);
+        printf("Masukkan nama musik atau folder: ");
+        fgets(x, 1024, stdin);
+        int len = strlen(x);
+        x[len-1] = '\0';
+        temp1 = search_node(temp1, x);
+        if(temp1==NULL){
+            printf("Tidak ada file/direktori tersebut\n");
+            temp1 = temp2;
+            getch();
+            continue;
+        }
+        if(len>=5){
+            if (strcmp(&x[len - 5], ".mp3") == 0) {
+                EnQueueMusic(queue,temp1);
+                printf("Lagu %s berhasil dimasukkan\n", temp1->name);
+                getch();
+                return;
+            } else {
+                temp2 = temp1;
+            }
+        
+        }
+    system("cls");
+    }
+    search_node(&tree,x);
+}
+
+will be.
+
+PROCEDURE add_music(tree: MusicNode, queue: ^queue)
+    // kamus
+    x: char[1024]
+    temp1, temp2: MusicTree
+    len: integer
+    // algoritma
+
+    temp1 <- address(tree)
+    temp2 <- temp1
+    WHILE (true) DO
+        print_children(temp1)
+        WRITE "Masukkan nama musik atau folder: "
+        READ x
+        len <- strlen(x)
+        x[len - 1] <- '\0'
+        temp1 <- search_node(temp1, x)
+        IF temp1 = NIL THEN
+            WRITE "Tidak ada file/direktori tersebut"
+            temp1 <- temp2
+            continue
+        ENDIF
+
+        IF len >= 5 THEN
+            IF strcmp(address(x[len - 5]), ".mp3") THEN
+                EnQueueMusic(queue,temp1);
+                WRITE "Lagu %s berhasil dimasukkan\n"
+                return
+            ELSE
+                 temp2 = temp1
+            ENDIF
+        ENDIF
+    ENDWHILE
+    search_node(address(tree),x);
+ENDPROCEDURE
+
+in case of a functon. the function prototype will be
+FUNCTION identifier(param: paramType...) -> return type
+example
+FUNCTION a_function(input: integer) -> integer

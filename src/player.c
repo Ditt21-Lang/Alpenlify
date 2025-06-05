@@ -7,12 +7,14 @@
 #include <assert.h>
 #include "stack.h"
 #include "math.h"
+#include "time.h"
 
-
-void init_music_player(PlayerHandle *handle, QueueMusic* music_queue){
+void init_music_player(PlayerHandle *handle, QueueMusic *music_queue)
+{
     ma_result r;
-    
+
     handle->music_queue = music_queue;
+    handle->is_loaded = false;
     r = ma_engine_init(NULL, &handle->engine);
     if (r != MA_SUCCESS)
     {
@@ -34,27 +36,29 @@ DWORD WINAPI music_thread(LPVOID lpParam)
     char *path_buffer;
     size_t path_buffer_len = 0;
     size_t path_len = 0;
-    bool is_loaded = false;
     CreateEmpty(&stack);
-
+    handle->is_loaded = false;
     music_path = get_music_folder_path();
     music_path_len = strlen(music_path);
-    (void)result;   
-   
+    (void)result;
+
     // Infinity loop
     while (1)
     {
-        if(!is_Empty(*handle->music_queue) && (!ma_sound_is_playing(&handle->sound))) {
-            if (is_loaded) {
+        if (!is_Empty(*handle->music_queue) && ((!handle->is_loaded) || (!ma_sound_is_playing(&handle->sound))))
+        {
+            if (handle->is_loaded)
+            {
                 ma_sound_stop(&handle->sound);
                 ma_sound_uninit(&handle->sound);
             }
             deQueueMusic(handle->music_queue, &cursor);
-            printf("\nMendequeue musik %s\n", cursor->name);
+            printf("\nINFO: Memutar musik %s\n", cursor->name);
             // ambil path
             path_buffer_len = 0;
             path_len = 0;
-            while(cursor->parent != NULL) {
+            while (cursor->parent != NULL)
+            {
                 // Push ke stack
                 Push(&stack, cursor);
                 // tambahkan panjang ke buffer + 1 buat taruh / setelah nama folder
@@ -62,21 +66,22 @@ DWORD WINAPI music_thread(LPVOID lpParam)
                 path_buffer_len += strlen(cursor->name) + 1;
                 cursor = cursor->parent;
             }
-            // sama, +1 itu buat taruh / 
+            // sama, +1 itu buat taruh /
             path_buffer_len += music_path_len + 1;
-            
+
             path_buffer = malloc(sizeof(char) * path_buffer_len);
             strcpy(path_buffer, music_path);
             path_len += music_path_len;
             *(path_buffer + path_len) = '/';
             // Karena kita append / di akhir sebelumnya
             path_len += 1;
-            
-            while(!IsEmpty(stack)) {
+
+            while (!IsEmpty(stack))
+            {
                 Pop(&stack, &cursor);
                 strcpy(path_buffer + path_len, cursor->name);
                 path_len += strlen(cursor->name);
-                *(path_buffer + path_len ) = '/';
+                *(path_buffer + path_len) = '/';
                 path_len += 1;
             }
             // override '/' jadi null terminator
@@ -89,8 +94,9 @@ DWORD WINAPI music_thread(LPVOID lpParam)
             }
 
             ma_sound_start(&handle->sound);
-            ma_sound_get_length_in_pcm_frames(&handle->sound, &length);
-            is_loaded = true;
+            ma_sound_get_length_in_pcm_frames(&handle->sound, &length);    
+            ma_sound_get_length_in_seconds(&(handle->sound), &handle->_current_music_time_in_secs);
+            handle->is_loaded = true;
         }
 
         if (handle->_command != NONE)
@@ -102,13 +108,17 @@ DWORD WINAPI music_thread(LPVOID lpParam)
                 break;
             case REWIND:
                 ma_sound_seek_to_pcm_frame(&handle->sound, 0);
+                printf("\nINFO: Musik di rewind\n");
                 break;
             case SEEK:
                 ma_sound_seek_to_second(&handle->sound, handle->_command_args[0]);
+                printf("\nINFO: Musik di seek ke: ");
+                second_to_time(handle->_command_args[0]);
                 break;
             case SKIP:
                 ma_sound_seek_to_pcm_frame(&handle->sound, length);
                 ma_sound_stop(&handle->sound);
+                printf("\nINFO: Musik di skip\n");
                 break;
             default:
                 assert(false || "Unreachable Case music_thread");
@@ -121,19 +131,19 @@ DWORD WINAPI music_thread(LPVOID lpParam)
     }
 }
 
-int get_currently_player_music_length(PlayerHandle *handle) {
-    float outLen;
-    ma_result res;
-    res = ma_sound_get_length_in_seconds(&(handle->sound), &outLen);
-
-    if (res != MA_SUCCESS) {
-        printf("ERROR: %s", ma_result_description(res));
+int get_currently_player_music_length(PlayerHandle *handle)
+{
+    if (!handle->is_loaded)
+    {
         return -1;
     }
-    
-    return (int)floorf(outLen);
-}
+    if (!ma_sound_is_playing(&(handle->sound)))
+    {
+        return -1;
+    }
 
+    return (int)floorf(handle->_current_music_time_in_secs);
+}
 
 void destroy_music_player(PlayerHandle *handle)
 {
@@ -141,16 +151,18 @@ void destroy_music_player(PlayerHandle *handle)
     CloseHandle(handle->thread_handle);
 }
 
-void rewind_music(PlayerHandle *handle){
+void rewind_music(PlayerHandle *handle)
+{
     handle->_command = REWIND;
 }
 
-void skip_music(PlayerHandle *handle){
+void skip_music(PlayerHandle *handle)
+{
     handle->_command = SKIP;
 }
 
-
-void seek_music(PlayerHandle *handle, int secs){
+void seek_music(PlayerHandle *handle, int secs)
+{
     handle->_command = SEEK;
     handle->_command_args[0] = secs;
 }

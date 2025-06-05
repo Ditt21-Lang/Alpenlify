@@ -1,32 +1,170 @@
 [
-    {
-        "fitur": "gilang mas",
-        "penjelasan": "Ini buatan gilang",
-        "screenhoot": "tmp.png",
-        "data": [
-            {
-                "nama_case": "Ini test 1",
-                "data_input": "Ini input",
-                "expected": "response = 69",
-                "actual": "response = 69",
-                "ss": "tmp.png",
-                "result": "PASS"
-            }
-        ]
-    },
-    {
-        "fitur": "Buatan gilag",
-        "penjelasan": "keren",
-        "screenhoot": "tmp.png",
-        "data": [
-            {
-                "nama_case": "Ini test 2",
-                "data_input": "Ini input",
-                "expected": "response = 69",
-                "actual": "response = 420",
-                "ss": "tmp.png",
-                "result": "FAILED"
-            }
-        ]
-    }
+  {
+    "fitur": "Memutar Musik",
+    "penjelasan": "Memutar lagu dari direktori lokal pengguna",
+    "screenhoot": "play_music_ss.png",
+    "data": [
+      {
+        "nama_case": "Putar lagu dari queue",
+        "data_input": "queue = [balatro.mp3]",
+        "expected": "balatro.mp3 mulai diputar",
+        "actual": "balatro.mp3 mulai diputar",
+        "ss": "play_music_ss.png",
+        "result": "PASS"
+      },
+      {
+        "nama_case": "Putar lagu ketika queue kosong",
+        "data_input": "queue = []",
+        "expected": "tidak ada lagu yang diputar",
+        "actual": "tidak ada lagu yang diputar",
+        "ss": "no_music.png",
+        "result": "PASS"
+      }
+    ]
+  },
+  {
+    "fitur": "Membuat Playing Queue",
+    "penjelasan": "Menambahkan lagu ke antrian untuk diputar",
+    "screenhoot": "queue.png",
+    "data": [
+      {
+        "nama_case": "Tambah satu lagu ke queue",
+        "data_input": "input = Bergadang.mp3 | TutorialMusic.mp3 | kodokLompat.mp3",
+        "expected": "Bergadang.mp3, TutorialMusic.mp3, kodokLompat.mp3 ditambahkan ke queue",
+        "actual": "Bergadang.mp3, TutorialMusic.mp3, kodokLompat.mp3 ditambahkan ke queue",
+        "ss": "queue.png",
+        "result": "PASS"
+      }
+    ]
+  },
+  {
+    "fitur": "Seek Waktu Musik",
+    "penjelasan": "Melompat ke waktu tertentu dalam lagu",
+    "screenhoot": "seek.png",
+    "data": [
+      {
+        "nama_case": "Seek ke detik ke-120",
+        "data_input": "input = 2:00",
+        "expected": "waktu pemutaran lagu berpindah ke detik 120",
+        "actual": "waktu pemutaran lagu berpindah ke detik 120",
+        "ss": "seek.png",
+        "result": "PASS"
+      },
+      {
+        "nama_case": "Seek ke waktu negatif",
+        "data_input": "input = -30",
+        "expected": "hanya masukan angka atau ':'",
+        "actual": "hanya masukan angka atau ':'",
+        "ss": "seek_neg.png",
+        "result": "PASS"
+      },
+      {
+        "nama_case": "Seek ke lebih dari panjang lagu",
+        "data_input": "input = 1:00:00 untuk lagu 1:00",
+        "expected": "Waktu yang diinputkan melebihi waktu lagu",
+        "actual": "Waktu yang diinputkan melebihi waktu lagu",
+        "ss": "seek_overflow.png",
+        "result": "PASS"
+      }
+    ]
+  },
+  {
+    "fitur": "Skip Musik",
+    "penjelasan": "Melompati lagu yang sedang diputar",
+    "screenhoot": "skip.png",
+    "data": [
+      {
+        "nama_case": "Skip lagu dengan isi queue",
+        "data_input": "queue = [TutorialMusic.mp3, kodokLompat.mp3, ToyLand.mp3], sekarang = Balatro.mp3",
+        "expected": "TutorialMusic.mp3 mulai diputar",
+        "actual": "TutorialMusic.mp3 mulai diputar",
+        "ss": "skip.png",
+        "result": "PASS"
+      },
+      {
+        "nama_case": "Skip ketika hanya satu lagu di queue",
+        "data_input": "queue = [], sekarang = WorseTutorialMusic.mp3",
+        "expected": "queue kosong, musik berhenti",
+        "actual": "queue kosong, musik berhenti",
+        "ss": "skip_no_queue.png",
+        "result": "PASS"
+      }
+    ]
+  },
+  {
+    "fitur": "Rewind Musik",
+    "penjelasan": "Mengulang lagu dari awal",
+    "screenhoot": "rewind.png",
+    "data": [
+      {
+        "nama_case": "Rewind saat musik berjalan",
+        "data_input": "lagu = Bergadang.mp3, waktu = 2:30",
+        "expected": "lagu kembali ke menit 0:00",
+        "actual": "lagu kembali ke menit 0:00",
+        "ss": "rewind.png",
+        "result": "PASS"
+      }
+    ]
+  },
+  {
+    "fitur": "Search Musik",
+    "penjelasan": "Mencari lagu di direktori musik",
+    "screenhoot": "search.png",
+    "data": [
+      {
+        "nama_case": "Cari lagu yang ada",
+        "data_input": "KeretaMalam",
+        "expected": "lagu ditemukan dalam folder Dangdut",
+        "actual": "lagu ditemukan dalam folder Dangdut",
+        "ss": "search.png",
+        "result": "PASS"
+      },
+      {
+        "nama_case": "Cari lagu yang tidak ada",
+        "data_input": "MusikTidakAda.mp3",
+        "expected": "hasil tidak ditemukan",
+        "actual": "hasil tidak ditemukan",
+        "ss": "search_no_music.png",
+        "result": "PASS"
+      }
+    ]
+  },
+  {
+    "fitur": "Lihat List Musik",
+    "penjelasan": "Menampilkan daftar musik dalam folder lokal",
+    "screenhoot": "lihat_music.png",
+    "data": [
+      {
+        "nama_case": "Tampilkan isi direktori dengan subfolder",
+        "data_input": "",
+        "expected": "struktur direktori lagu ditampilkan dengan indentasi",
+        "actual": "struktur direktori lagu ditampilkan dengan indentasi",
+        "ss": "lihat_music.png",
+        "result": "PASS"
+      }
+    ]
+  },
+  {
+    "fitur": "Cek Queue Musik",
+    "penjelasan": "Menampilkan isi antrian lagu saat ini",
+    "screenhoot": "queue2.png",
+    "data": [
+      {
+        "nama_case": "Tampilkan queue dengan banyak lagu",
+        "data_input": "queue = [kodokLompat.mp3, output.mp3]",
+        "expected": "kodokLompat.mp3, output.mp3 ditampilkan",
+        "actual": "kodokLompat.mp3, output.mp3 ditampilkan",
+        "ss": "queue2.png",
+        "result": "PASS"
+      },
+      {
+        "nama_case": "Tampilkan queue kosong",
+        "data_input": "queue = []",
+        "expected": "pesan queue kosong",
+        "actual": "pesan queue kosong",
+        "ss": "no_queue.png",
+        "result": "PASS"
+      }
+    ]
+  }
 ]

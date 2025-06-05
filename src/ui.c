@@ -1,11 +1,5 @@
 #include "ui.h"
 
-/*
-    IS: Terminal kosong
-    FS: Terminal menampilkan pilihan menu dan menanyakan pilihan user
-
-    Creator: Raf
-*/
 
 void menu(MusicNode tree, QueueMusic *queue, PlayerHandle *handle){
     int x;
@@ -32,12 +26,6 @@ void menu(MusicNode tree, QueueMusic *queue, PlayerHandle *handle){
     }
 }
 
-/*
-    IS: Tree tidak kosong  
-    FS: Tree ditampilkan ke layar
-
-    Creator: Raf
-*/
 
 void view_music(MusicNode tree){
     system("cls");
@@ -46,22 +34,16 @@ void view_music(MusicNode tree){
     getch();
 }
 
-/*
-    IS: Queue mungkin kosong
-    FS: Musik dalam queue bertambah 
-
-    Creator: Raf
-*/
 
 void add_music(MusicNode tree, QueueMusic *queue){
-    char x[100];
+    char x[1024];
     MusicTree temp1, temp2;
     temp1 = &tree;
     temp2 = temp1;
     while(1){
         print_children(temp1);
         printf("Masukkan nama musik atau folder: ");
-        fgets(x, 100, stdin);
+        fgets(x, 1024, stdin);
         int len = strlen(x);
         x[len-1] = '\0';
         temp1 = search_node(temp1, x);
@@ -87,39 +69,30 @@ void add_music(MusicNode tree, QueueMusic *queue){
     search_node(&tree,x);
 }
 
-/*
-    IS: Musik dijalankan
-    FS: Musik dihentikan dan lanjut ke music berikutnya di queue jika ada
-
-    Creator: Raf
-*/
 
 void skip(PlayerHandle *handle){
     skip_music(handle);
 }
 
-/*
-    IS: Musik berjalan
-    FS: Musik diulang dari awal
 
-    Creator:Raf
-*/
 
 void replay(PlayerHandle *handle){
     rewind_music(handle);
 }
 
-/*
-    IS: Musik berjalan
-    FS: Musik berjalan di detik yang ditentukan
 
-    Creator:Raff
-*/
 
 void seek(PlayerHandle *handle){
     int second = get_currently_player_music_length(handle);
     int detik = -1;
     char waktu[10];
+
+    if(second == -1) {
+        printf("\nTidak ada musik yang sedang dijalankan\n");
+        getch();
+        return;
+    }
+
     loop:
     while(detik < 0 || detik > second){
         system("cls");

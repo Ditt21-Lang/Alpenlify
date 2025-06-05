@@ -2,6 +2,7 @@
 #define PLAYER_H
 #include <Windows.h>
 #include "miniaudio.h"
+#include <stdbool.h>
 
 
 typedef struct MusicNode {
@@ -41,6 +42,8 @@ typedef struct PlayerHandle {
     MusicCommand _command;
     int _command_args[1];
     QueueMusic* music_queue;
+    bool is_loaded;
+    float _current_music_time_in_secs;
 } PlayerHandle; 
 
 /*

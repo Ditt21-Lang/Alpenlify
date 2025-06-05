@@ -1,33 +1,17 @@
 #include "time.h"
 
-/*
-    IS: Detik diketahui
-    FS: Jam diketahui
 
-    Creator:Raff
-*/
 
 int hour_to_second(int hour){
     return hour*3600;
 }
 
-/*
-    IS: Menit diketahui
-    FS: Jam diketahui
 
-    Creator:Raff
-*/
 
 int minute_to_second(int minute){
     return minute*60;
 }
 
-/*
-    IS: Detik diketahui
-    FS: Menit diketahui
-
-    Creator:Raff
-*/
 
 int second_to_hour(int *second){
     int hour = 0;
@@ -36,12 +20,7 @@ int second_to_hour(int *second){
     return hour;
 }
 
-/*
-    IS: Menit diketahui
-    FS: Jam diketahui
 
-    Creator:Raff
-*/
 
 int second_to_minute(int *second){
     int minute = 0;
@@ -50,12 +29,7 @@ int second_to_minute(int *second){
     return minute;
 }
 
-/*
-    IS: Detik diketahui 
-    FS: Waktu dengan format jam:menit:detik diketahui
 
-    Creator:Raff
-*/
 
 void second_to_time(int second){
     int hour = second_to_hour(&second);
@@ -69,12 +43,7 @@ void second_to_time(int second){
     }
 }
 
-/*
-    IS: Waktu dengan format jam:menit:detik atau menit:detik atau detik diketahui
-    FS: Detik dikethui
 
-    Creator:Raff
-*/
 
 int time_to_second(char time[10]){
     int len = strlen(time);

@@ -63,7 +63,7 @@ MusicTree search_node(MusicTree root, char* target);
 
 /*
     IS: Nama file yang ingin dicari belum diketahui
-    FS: User Mengetik file yang ingin dicari
+    FS: User Mengetik file yang ingin dicari (bisa ketemu, bisa tidak)
 
     Creator: Gilang Aditya
 */

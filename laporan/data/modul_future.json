@@ -70,7 +70,7 @@
                 ],
                 "lokal": [],
                 "is": "Tree ada",
-                "fs": "Tree ditebang gess tidakkkk kacau"
+                "fs": "Tree Dihapus (dealokasi)"
             },
             {
                 "nama": "Gilang Aditya",
@@ -123,6 +123,22 @@
                 ],
                 "is": "Tree sudah terbuat",
                 "fs": "Node yang dicari dikembalikan"
+            },
+            {
+                "nama": "Gilang Aditya",
+                "modul": "input_specific_search",
+                "deskripsi": "Menginput nama node yang ingin dicari",
+                "tipe": "Procedure",
+                "parameter": [
+                    "root",
+                    "MusicTree"
+                ],
+                "lokal": [
+                    "input",
+                    "char[1024]"
+                ],
+                "is": "Nama file yang ingin dicari belum diketahui",
+                "fs": "User Mengetik file yang ingin dicari (bisa ketemu bisa tidak)"
             },
             {
                 "nama": "Gilang Aditya",
@@ -188,7 +204,7 @@
                     "MusicNode*"
                 ],
                 "is": "Root diketahui",
-                "fs": "children bertambah (music atau driektori)"
+                "fs": "children bertambah (music atau direktori)"
             }
         ]
     },
@@ -320,6 +336,225 @@
                 "lokal": [],
                 "is": "Thread terbuat",
                 "fs": "seek musik ke detik yang ditentukan"
+            }
+        ]
+    },
+    {
+        "modul_name": "UI",
+        "modules": [
+            {
+                "nama": "Raf",
+                "modul": "menu",
+                "deskripsi": "Menampilkan antarmuka menu utama kepada pengguna, memungkinkan interaksi dengan berbagai fitur pemutar musik seperti melihat musik, menambah ke antrian, skip, replay, seek, memeriksa antrian, dan mencari musik.",
+                "tipe": "Procedure",
+                "parameter": [
+                    "tree",
+                    "MusicNode",
+                    "queue",
+                    "QueueMusic *",
+                    "handle",
+                    "PlayerHandle *"
+                ],
+                "lokal": [
+                    "x",
+                    "int"
+                ],
+                "is": "Terminal kosong",
+                "fs": "Terminal menampilkan pilihan menu dan menanyakan pilihan user"
+            },
+            {
+                "nama": "Raf",
+                "modul": "view_music",
+                "deskripsi": "Membersihkan layar terminal dan menampilkan seluruh struktur tree musik yang tersedia.",
+                "tipe": "Procedure",
+                "parameter": [
+                    "tree",
+                    "MusicNode"
+                ],
+                "lokal": [],
+                "is": "Tree tidak kosong",
+                "fs": "Tree ditampilkan ke layar"
+            },
+            {
+                "nama": "Raf",
+                "modul": "add_music",
+                "deskripsi": "Memandu pengguna melalui tree musik untuk memilih dan menambahkan file musik (.mp3) ke dalam antrian pemutaran.",
+                "tipe": "Procedure",
+                "parameter": [
+                    "tree",
+                    "MusicNode",
+                    "queue",
+                    "QueueMusic *"
+                ],
+                "lokal": [
+                    "x",
+                    "char[1024]",
+                    "temp1",
+                    "MusicTree",
+                    "temp2",
+                    "MusicTree",
+                    "len",
+                    "int"
+                ],
+                "is": "Queue mungkin kosong",
+                "fs": "Musik dalam queue bertambah"
+            },
+            {
+                "nama": "Raf",
+                "modul": "skip",
+                "deskripsi": "Memanggil fungsi untuk melompati musik yang sedang diputar dan melanjutkan ke musik berikutnya dalam antrian (jika ada).",
+                "tipe": "Procedure",
+                "parameter": [
+                    "handle",
+                    "PlayerHandle *"
+                ],
+                "lokal": [],
+                "is": "Musik dijalankan",
+                "fs": "Musik dihentikan dan lanjut ke music berikutnya di queue jika ada"
+            },
+            {
+                "nama": "Raf",
+                "modul": "replay",
+                "deskripsi": "Memanggil fungsi untuk memutar ulang musik yang sedang berjalan dari awal.",
+                "tipe": "Procedure",
+                "parameter": [
+                    "handle",
+                    "PlayerHandle *"
+                ],
+                "lokal": [],
+                "is": "Musik berjalan",
+                "fs": "Musik diulang dari awal"
+            },
+            {
+                "nama": "Raff",
+                "modul": "seek",
+                "deskripsi": "Memungkinkan pengguna untuk memindahkan posisi pemutaran musik yang sedang berjalan ke durasi (detik) tertentu yang diinput oleh pengguna.",
+                "tipe": "Procedure",
+                "parameter": [
+                    "handle",
+                    "PlayerHandle *"
+                ],
+                "lokal": [
+                    "second",
+                    "int",
+                    "detik",
+                    "int",
+                    "waktu",
+                    "char[10]",
+                    "i",
+                    "int"
+                ],
+                "is": "Musik berjalan",
+                "fs": "Musik berjalan di detik yang ditentukan"
+            }
+        ]
+    },
+    {
+        "modul_name": "Time",
+        "modules": [
+            {
+                "nama": "Raff",
+                "modul": "hour_to_second",
+                "deskripsi": "Mengonversi nilai jam menjadi total detik dengan mengalikannya dengan 3600.",
+                "tipe": "Function",
+                "parameter": [
+                    "hour",
+                    "int"
+                ],
+                "lokal": [],
+                "is": "Detik diketahui",
+                "fs": "Jam diketahui"
+            },
+            {
+                "nama": "Raff",
+                "modul": "minute_to_second",
+                "deskripsi": "Mengonversi nilai menit menjadi total detik dengan mengalikannya dengan 60.",
+                "tipe": "Function",
+                "parameter": [
+                    "minute",
+                    "int"
+                ],
+                "lokal": [],
+                "is": "Menit diketahui",
+                "fs": "Jam diketahui"
+            },
+            {
+                "nama": "Raff",
+                "modul": "second_to_hour",
+                "deskripsi": "Mengonversi total detik (yang diterima melalui pointer) menjadi jam. Nilai yang ditunjuk oleh pointer detik diperbarui menjadi sisa detik setelah konversi. Mengembalikan jumlah jam.",
+                "tipe": "Function",
+                "parameter": [
+                    "second",
+                    "int *"
+                ],
+                "lokal": [
+                    "hour",
+                    "int"
+                ],
+                "is": "Menit diketahui",
+                "fs": "Jam diketahui"
+            },
+            {
+                "nama": "Raff",
+                "modul": "second_to_minute",
+                "deskripsi": "Mengonversi total detik (yang diterima melalui pointer) menjadi menit. Nilai yang ditunjuk oleh pointer detik diperbarui menjadi sisa detik setelah konversi. Mengembalikan jumlah menit.",
+                "tipe": "Function",
+                "parameter": [
+                    "second",
+                    "int *"
+                ],
+                "lokal": [
+                    "minute",
+                    "int"
+                ],
+                "is": "Detik diketahui",
+                "fs": "Menit diketahui"
+            },
+            {
+                "nama": "Raff",
+                "modul": "second_to_time",
+                "deskripsi": "Mengonversi total detik menjadi format waktu (JJ:MM:DD, MM:DD, atau DD) dan mencetaknya ke konsol. Menggunakan fungsi second_to_hour dan second_to_minute untuk konversi.",
+                "tipe": "Procedure",
+                "parameter": [
+                    "second",
+                    "int"
+                ],
+                "lokal": [
+                    "hour",
+                    "int",
+                    "minute",
+                    "int"
+                ],
+                "is": "Detik diketahui",
+                "fs": "Waktu dengan format jam:menit:detik diketahui"
+            },
+            {
+                "nama": "Raff",
+                "modul": "time_to_second",
+                "deskripsi": "Mengonversi string waktu (dalam format JJ:MM:DD, MM:DD, atau DD) menjadi total detik. Memparsing string untuk jam, menit, dan detik berdasarkan jumlah delimiter ':'.",
+                "tipe": "Function",
+                "parameter": [
+                    "time",
+                    "char[10]"
+                ],
+                "lokal": [
+                    "len",
+                    "int",
+                    "second",
+                    "int",
+                    "minute",
+                    "int",
+                    "hour",
+                    "int",
+                    "totalsec",
+                    "int",
+                    "colonCount",
+                    "int",
+                    "i",
+                    "int"
+                ],
+                "is": "Waktu dengan format jam:menit:detik atau menit:detik atau detik diketahui",
+                "fs": "Detik dikethui"
             }
         ]
     }

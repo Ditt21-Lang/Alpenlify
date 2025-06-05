@@ -127,7 +127,7 @@ MusicTree specific_search(MusicTree root, char* target){
 void print_specific_search(MusicTree node){
     
     printf("Musik/Direktori yang kamu cari yaitu: %s\n", node->name);
-    printf("Music tersebut berada di:\n");
+    printf("Musik/Direktori tersebut berada di:\n");
     Stack stack;
     CreateEmpty(&stack);
     
