@@ -91,6 +91,21 @@ MusicTree search_node(MusicTree root, char* target){
     return search_node(root->nbrother, target);
 }
 
+void input_specific_search(MusicTree root){
+    char input[1024];
+    MusicTree found;
+    printf("Masukkan Nama file: ");
+    fgets(input, sizeof(input), stdin);
+    input[strcspn(input, "\n")] = '\0';
+    found = specific_search(root, input);
+    if(found != NULL){
+        print_specific_search(found);
+    } else {
+        printf("Musik/Direktorimu tidak ditemukan");
+    }
+        
+}
+
 MusicTree specific_search(MusicTree root, char* target){
     if(root == NULL){
         return  NULL;

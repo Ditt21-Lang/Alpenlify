@@ -60,6 +60,15 @@ void print_tree(MusicNode* root, int height);
 */
 MusicTree search_node(MusicTree root, char* target);
 
+
+/*
+    IS: Nama file yang ingin dicari belum diketahui
+    FS: User Mengetik file yang ingin dicari
+
+    Creator: Gilang Aditya
+*/
+void input_specific_search(MusicTree root);
+
 /*
     IS: Tree Musik ada
     FS: Mengembalikan node music yang dicari

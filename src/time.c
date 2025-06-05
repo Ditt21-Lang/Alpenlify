@@ -78,40 +78,27 @@ void second_to_time(int second){
 
 int time_to_second(char time[10]){
     int len = strlen(time);
-    int colonCount=0;
-    char num[2];
-    int temp;
-    int second = 0;
+    int second, minute, hour;
+    int totalsec=0;
+    int colonCount = 0;
     for(int i=0;i<len;i++){
         if(time[i] == ':'){
             colonCount++;
         }
     }
-    if(colonCount>=2){
-        num[0] = time[0];
-        num[1] = time[1];
-        temp = atoi(num);
-        second += hour_to_second(temp);
-        num[0] = time[3];
-        num[1] = time[4];
-        temp = atoi(num);
-        second += minute_to_second(temp);
-        num[0] = time[6];
-        num[1] = time[7];
-        second += atoi(num);
-    } else if (colonCount>=1){
-        num[0] = time[0];
-        num[1] = time[1];
-        temp = atoi(num);
-        second += minute_to_second(temp);
-        num[0] = time[3];
-        num[1] = time[4];
-        second += atoi(num);
+    if(colonCount==2){
+        sscanf(time, "%d:%d:%d", &hour, &minute, &second);
+        totalsec += hour_to_second(hour);
+        totalsec += minute_to_second(minute);
+        totalsec += second;
+    } else if (colonCount==1){
+        sscanf(time, "%d:%d", &minute, &second);
+        totalsec += minute_to_second(minute);
+        totalsec += second;
     } else {
-        num[0] = time[0];
-        num[1] = time[1];
-        second += atoi(num);
+        sscanf(time, "%d", &second);
+        totalsec += second;
     }
     
-    return second;
+    return totalsec;
 }

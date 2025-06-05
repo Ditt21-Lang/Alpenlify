@@ -10,18 +10,22 @@
 void menu(MusicNode tree, QueueMusic *queue, PlayerHandle *handle){
     int x;
     while(1){
-        printf("1. Lihat Musik\n2. Tambahkan musik ke queue\n3. Skip\n4. Replay\n5. Seek\n6. Keluar\n7. Check Queue\nMasukkan pilihan: ");
+        printf("1. Lihat Musik\n2. Tambahkan musik ke queue\n3. Skip\n4. Replay\n5. Seek\n6. Check Queue\n7. Search Musik\n8. Keluar\nMasukkan pilihan: ");
         scanf("%d", &x);
+        getchar();
         switch(x){
         case 1: view_music(tree);break;
         case 2: add_music(tree,queue);break;
         case 3: skip(handle); break;
         case 4: replay(handle); break;
         case 5: seek(handle); break;
-        case 6: return;
-        case 7: PrintQueueMusic(*queue);
+        case 6: PrintQueueMusic(*queue);
                 getch();
                 break;
+        case 7: input_specific_search(&tree);
+                getchar();
+                break;
+        case 8: return;
         default: break;
     }
     system("cls");
@@ -121,7 +125,7 @@ void seek(PlayerHandle *handle){
         system("cls");
         printf("Panjang lagu saat ini: ");
         second_to_time(second);
-        printf("Contoh waktu seek:\n12 (detik saja)\n02:52 (menit:detik)\n01:53:23 (jam:menit:detik)\nPastikan ada 0 apabila bilangan satuan\n");
+        printf("Contoh waktu seek:\n12 (detik saja)\n2:52 (menit:detik)\n1:53:23 (jam:menit:detik)\n");
         printf("Masukkan detik ke berapa: ");
         scanf("%s", waktu);
         for(int i=0;waktu[i]!='\0';i++){
