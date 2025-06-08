@@ -32,11 +32,12 @@ Pastikan Anda telah menginstal salah satu compiler berikut:
 - zig (opsional, jika ingin menggunakan Zig sebagai compiler C)
 
 ### Compile dan Jalankan
-Buka file `build.sh` lalu ubah variable CC dengan compiler yang kamu gunakan. Lalu eksekusi
+Buka file `build.sh` lalu ubah variable CC dengan compiler yang kamu gunakan. Lalu eksekusi.
+
+Dalam beberapa kasus, ada kemungkinan miniaudio harus di compile ulang. Dalam kasus itu, hilangkan komentar yang ada di build.sh
 
 ```sh
 ./main.exe
 # atau beberapa compiler mengeluarkan tanpa extensi (misalnya zig)
 ./main
-
 ```

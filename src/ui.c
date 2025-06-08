@@ -41,6 +41,11 @@ void add_music(MusicNode tree, QueueMusic *queue){
     temp1 = &tree;
     temp2 = temp1;
     while(1){
+        if(temp1->fson == NULL) {
+            printf("Folder tersebut tidak memiliki musik");
+            getch();
+            return;
+        }
         print_children(temp1);
         printf("Masukkan nama musik atau folder: ");
         fgets(x, 1024, stdin);
