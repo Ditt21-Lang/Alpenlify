@@ -119,9 +119,6 @@ void print_specific_search(MusicTree node){
         Push(&stack, current);
         current = current->parent; 
     }
-
-    char full_path[2048];
-    snprintf(full_path, sizeof(full_path), "%s", get_music_folder_path());
     
     MusicNode *mn;
     printf("Music");

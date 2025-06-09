@@ -1,4 +1,4 @@
-CC="zig cc"
+CC="clang -g -o"
 # Hapus komentar dibawah jika ingin mengcopile ulang miniaudio
 # $CC -c -o miniaudio.o ./external/miniaudio.c -I ./external/
 
