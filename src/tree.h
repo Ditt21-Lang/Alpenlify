@@ -67,16 +67,7 @@ MusicTree search_node(MusicTree root, char* target);
 
     Creator: Gilang Aditya
 */
-void input_specific_search(MusicTree root);
-
-/*
-    IS: Tree Musik ada
-    FS: Mengembalikan node music yang dicari
-
-    Creator: Gilang Aditya
-*/
-MusicTree specific_search(MusicTree root, char* target);
-
+void specific_search(MusicTree root);
 
 /*
     IS: Node musik yang dicari ada

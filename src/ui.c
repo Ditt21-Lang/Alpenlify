@@ -16,7 +16,7 @@ void menu(MusicNode tree, QueueMusic *queue, PlayerHandle *handle){
         case 6: PrintQueueMusic(*queue);
                 getch();
                 break;
-        case 7: input_specific_search(&tree);
+        case 7: specific_search(&tree);
                 getchar();
                 break;
         case 8: return;
